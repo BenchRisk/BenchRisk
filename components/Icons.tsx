@@ -41,7 +41,7 @@ import {
   FaNewspaper,
   FaTv,
 } from 'react-icons/fa'
-import { FaGoogleScholar, FaLinkedinIn, FaSackDollar } from 'react-icons/fa6'
+import { FaGoogleScholar, FaLinkedinIn, FaSackDollar, FaBugSlash } from 'react-icons/fa6'
 import { BsOctagonFill } from 'react-icons/bs'
 import { BiSolidCctv } from 'react-icons/bi'
 import { PiMapPinSimpleAreaLight, PiVideoConferenceLight } from 'react-icons/pi'
@@ -53,6 +53,7 @@ import { MdOutlineOndemandVideo, MdClose } from 'react-icons/md'
 import { createElement } from 'react'
 
 const icons = {
+  FaBugSlash: FaBugSlash,
   FaTruckLoading: FaTruckLoading,
   FaGamepad: FaGamepad,
   FaEyeSlash: FaEyeSlash,
