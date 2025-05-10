@@ -1,6 +1,6 @@
 ---
-name: Amend Failure Mode
-about: Suggest a change to a current failure mode
+name: Amend Mitigation
+about: Suggest a change to a current mitigation
 title: Ammend Mitigation EXISTING-MITIGATION-NUMBER
 labels: Mitigation
 assignees: smcgregor
