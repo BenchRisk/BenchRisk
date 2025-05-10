@@ -1,7 +1,7 @@
 ---
-name: Ammend Failure Mode
+name: Amend Failure Mode
 about: Suggest a change to a current failure mode
-title: Ammend Mode EXISTING-FAILURE-MODE-NUMBER
+title: Amend Mode EXISTING-FAILURE-MODE-NUMBER
 labels: FailureMode
 assignees: smcgregor
 
