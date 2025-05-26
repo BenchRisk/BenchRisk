@@ -146,44 +146,9 @@ export const Authors = defineDocumentType(() => ({
   computedFields,
 }))
 
-export const CV = defineDocumentType(() => ({
-  name: 'CV',
-  filePathPattern: 'cv/**/*.mdx',
-  contentType: 'mdx',
-  fields: {
-    title: { type: 'string', required: true },
-    year: { type: 'string', required: true },
-    tags: { type: 'list', of: { type: 'string' }, default: [] },
-    draft: { type: 'boolean' },
-    highlight: { type: 'boolean', default: false },
-    citation: { type: 'string' },
-    paper: { type: 'string' },
-    hide_tags: { type: 'string' },
-    venue: { type: 'string' },
-    authors: { type: 'string' },
-    bibtex: { type: 'string' },
-    video: { type: 'string' },
-    slides: { type: 'string' },
-    poster: { type: 'string' },
-    demo: { type: 'string' },
-  },
-  computedFields: {
-    ...computedFields,
-    structuredData: {
-      type: 'json',
-      resolve: (doc) => ({
-        '@context': 'https://schema.org',
-        '@type': 'CVEntry',
-        headline: doc.title,
-        url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
-      }),
-    },
-  },
-}))
-
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog, Authors, CV],
+  documentTypes: [Blog, Authors],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [
@@ -213,7 +178,7 @@ export default makeSource({
     ],
   },
   onSuccess: async (importData) => {
-    const { allBlogs, allCVs } = await importData()
+    const { allBlogs } = await importData()
     createTagCount(allBlogs)
     createSearchIndex(allBlogs)
   },

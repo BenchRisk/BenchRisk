@@ -40,6 +40,7 @@ import {
   FaMicrosoft,
   FaNewspaper,
   FaTv,
+  FaRocket,
 } from 'react-icons/fa'
 import { FaGoogleScholar, FaLinkedinIn, FaSackDollar, FaBugSlash } from 'react-icons/fa6'
 import { BsOctagonFill } from 'react-icons/bs'
@@ -108,6 +109,7 @@ const icons = {
   FaNewspaper: FaNewspaper,
   FaTv: FaTv,
   MdClose: MdClose,
+  FaRocket: FaRocket,
 }
 
 // Icons taken from: https://simpleicons.org/
