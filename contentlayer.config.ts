@@ -146,9 +146,68 @@ export const Authors = defineDocumentType(() => ({
   computedFields,
 }))
 
+export const Modes = defineDocumentType(() => ({
+  name: 'Modes',
+  filePathPattern: 'modes/**/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    number: { type: 'number', required: true },
+    severity: { type: 'number', required: true },
+    example: { type: 'string', required: true },
+    short: { type: 'string', required: true },
+    stage: { type: 'enum',
+      options: [
+        '(1) Task Definition',
+        '(2) Prompt Generation',
+        '(3) Prompt Inferencing',
+        '(4) Output Evaluation',
+        '(5) Scoring',
+        '(6) Grade Presentation',
+        '(7) Upkeep'],
+      required: true },
+    about: { type: 'markdown', required: true },
+    dateAdded: { type: 'date', required: true },
+    dateUpdated: { type: 'date', required: true },
+  },
+  computedFields,
+}))
+
+export const Mitigations = defineDocumentType(() => ({
+  name: 'Mitigations',
+  filePathPattern: 'mitigations/**/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    mitigationNumber: { type: 'number', required: true },
+    mitigatedNumber: { type: 'number', required: true },
+    severityReductionPercent: { type: 'number', required: true },
+    likelihoodReductionPercent: { type: 'number', required: true },
+    questionStatement: { type: 'string', required: true },
+    dateAdded: { type: 'date', required: true },
+    dateUpdated: { type: 'date', required: true },
+  },
+  computedFields,
+}))
+
+export const Scores = defineDocumentType(() => ({
+  name: 'Scores',
+  filePathPattern: 'scores/**/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    name: { type: 'string', required: true },
+    adoptedMitigations: { type: 'list',
+      of: { type: 'number' }, required: true },
+    absentMitigations: { type: 'list',
+      of: { type: 'number' }, required: true },
+    benchmarkDescription: { type: 'string', required: true },
+    reference: { type: 'markdown', required: true },
+    dateScored: { type: 'date', required: true },
+  },
+  computedFields,
+}))
+
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog, Authors],
+  documentTypes: [Blog, Authors, Modes, Mitigations, Scores],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [
@@ -178,7 +237,7 @@ export default makeSource({
     ],
   },
   onSuccess: async (importData) => {
-    const { allBlogs } = await importData()
+    const { allBlogs, allModes, allMitigations, allScores } = await importData()
     createTagCount(allBlogs)
     createSearchIndex(allBlogs)
   },
