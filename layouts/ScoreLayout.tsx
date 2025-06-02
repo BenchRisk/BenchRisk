@@ -55,14 +55,14 @@ export default function ScoreLayout({
           {!filteredScores.length && 'No scores found.'}
           {displayScores.map((score) => {
 
-            const { benchmarkDescription, reference, name, dateScored, adoptedMitigations } = score
+            const { benchmarkDescription, reference, name, dateScored, adoptedMitigations, numberOfMitigations } = score
             return (
               <li key={"Score" + name} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <dl>
                     <dt className="sr-only">Published on</dt>
                     <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={dateScored}>{formatDate(dateScored, siteMetadata.locale)}</time>
+                      {name}
                     </dd>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
@@ -74,7 +74,18 @@ export default function ScoreLayout({
                       </h3>
                     </div>
                     <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                      {adoptedMitigations.length}
+                      {adoptedMitigations.length} should equal {numberOfMitigations}
+                      Update <time dateTime={dateScored}>{formatDate(dateScored, siteMetadata.locale)}</time>
+                          <div>
+                            <h2>Object Entries</h2>
+                            <ul>
+                              {Object.entries(score).map(([key, value]) => (
+                                <li key={key}>
+                                  {key}: {value.toString()}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                     </div>
                   </div>
                 </article>

@@ -155,6 +155,7 @@ export const Modes = defineDocumentType(() => ({
     severity: { type: 'number', required: true },
     example: { type: 'string', required: true },
     short: { type: 'string', required: true },
+    dimension: { type: 'string', required: true },
     stage: { type: 'enum',
       options: [
         '(1) Task Definition',
@@ -195,9 +196,9 @@ export const Scores = defineDocumentType(() => ({
   fields: {
     name: { type: 'string', required: true },
     adoptedMitigations: { type: 'list',
-      of: { type: 'number' }, required: true },
+      of: {type: 'number'}, required: false },
     absentMitigations: { type: 'list',
-      of: { type: 'number' }, required: true },
+      of: {type: 'number'}, required: false },
     benchmarkDescription: { type: 'string', required: true },
     reference: { type: 'markdown', required: true },
     dateScored: { type: 'date', required: true },
