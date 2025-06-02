@@ -1,0 +1,24 @@
+---
+number: 15
+dateAdded: '2025-04-01'
+dateUpdated: '2025-04-01'
+short: Prompts have known properties allowing for achieving an unrealistic (i.e.,
+  non-generalizing) performance.  For example, prompts are of particular and known
+  lengths.
+example: A benchmark testing whether code generation models detect instructions for
+  generating malware uses prompts that are consistently of a particular length, averaging
+  10 lines of code for malware, and 8 lines of code for non-malicious code. The model
+  performs well on this benchmark, as it has been explicitly optimized to have a higher
+  prior belief of malware for 10 lines of code vs 8 lines of code. However, the difference
+  in length is solely a statistical artifact of the evaluation and not representative
+  of the actual performance. A benchmark user, assuming the model’s high score represents
+  its ability to prevent malware generation, deploys it in a real-world software development
+  environment. The model then generates more malware than would otherwise have been
+  generated.
+severity: 0.7
+stage: (2) Prompt Generation
+dimension: Longevity
+about: todo
+---
+
+todo

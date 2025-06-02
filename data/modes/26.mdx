@@ -1,0 +1,22 @@
+---
+number: 26
+dateAdded: '2025-04-01'
+dateUpdated: '2025-04-01'
+short: Evaluator (humans labeling the final outputs used in benchmarking or an LLM-as-a-judge)
+  tuned on translated outputs with substantial errors
+example: The benchmark uses human or automated evaluators to score model outputs in
+  a target language, such as Swahili or Thai. However, since evaluators are primarily
+  English-speaking, the model outputs are translated into English for scoring. The
+  translation process introduces semantic shifts, idiomatic inaccuracies, or tone
+  distortions that obscure the original meaning. Evaluators rate these mistranslated
+  outputs, leading to misleadingly low or high scores depending on the nature of the
+  translation errors. A benchmark user relies on these scores to select a model for
+  multilingual deployment, only to discover that the model performs poorly in the
+  actual target language due to evaluation artifacts that masked critical failures.
+severity: 0.8
+stage: (4) Output Evaluation
+dimension: Correctness
+about: todo
+---
+
+todo

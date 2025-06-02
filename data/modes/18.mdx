@@ -1,0 +1,27 @@
+---
+number: 18
+dateAdded: '2025-04-01'
+dateUpdated: '2025-04-01'
+short: No coverage for target language idiomatic expressions (including differences
+  in functional expression, less common APIs, etc., within programming languages)
+  beyond those known to the benchmark authors
+example: A benchmark designed to evaluate a programming language model’s ability to
+  generate code for common tasks focuses on widely used APIs and standard coding conventions,
+  as well as idiomatic expressions in a programming language (e.g., Python list comprehensions,
+  JavaScript callbacks). However, the prompts used by the benchmark authors reflect
+  only the patterns and libraries they are familiar with, leaving out less common
+  or emerging idioms, libraries, or APIs that may become relevant in real-world usage.
+  As a result, the SUT performs well on the benchmark, which primarily uses the most
+  established coding patterns and libraries. However, when deployed to generate code
+  for novel, less-standard tasks or new frameworks, the model produces inefficient
+  or incorrect code. The benchmark user, assuming the model’s high performance on
+  the benchmark means general code generation ability, integrates it into production
+  environments where it struggles with newer tools or approaches, leading to code
+  inefficiencies and technical debt.
+severity: 0.6
+stage: (2) Prompt Generation
+dimension: Comprehensiveness
+about: todo
+---
+
+todo

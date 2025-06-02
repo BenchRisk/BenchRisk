@@ -1,0 +1,22 @@
+---
+number: 29
+dateAdded: '2025-04-01'
+dateUpdated: '2025-04-01'
+short: SUT developers produce training data from evaluator
+example: Developers of a SUT gain access to the benchmark evaluator—either by reverse-engineering
+  a public implementation or through a public API—and use it as a reward model or
+  filtering mechanism during training or fine-tuning. This causes the model to optimize
+  specifically for evaluator preferences, potentially learning to game the scoring
+  mechanism through superficial alignment (e.g., mimicking surface features that score
+  well, like formality or verbosity) rather than achieving true task performance.
+  As a result, the model performs exceptionally well on the benchmark but fails to
+  generalize to tasks that aren’t shaped by the evaluator’s biases. A benchmark user,
+  unaware of this overfitting loop, selects the system expecting robust general capabilities,
+  only to encounter brittle outputs.
+severity: 0.8
+stage: (4) Output Evaluation
+dimension: Correctness
+about: todo
+---
+
+todo

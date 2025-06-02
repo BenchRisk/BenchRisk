@@ -1,0 +1,24 @@
+---
+number: 35
+dateAdded: '2025-04-01'
+dateUpdated: '2025-04-01'
+short: Failure to propagate uncertainty or confidence from lower level measures to
+  higher level grades
+example: A benchmark evaluates AI medical diagnosis capabilities across 50 different
+  conditions and aggregates these results into a single "Medical Competency Score."
+  Each condition assessment has different confidence intervals based on sample size
+  and evaluator expertise, but these uncertainties are lost in the final score calculation.
+  A particular SUT scores 98% overall due to strong performance on common conditions
+  with large sample sizes, masking its poor performance on rare conditions where data
+  is limited. The benchmark user implements this system in a rural hospital with different
+  disease prevalence patterns than those emphasized in the benchmark. The system consistently
+  misdiagnoses several locally common conditions that had wide confidence intervals
+  in the original evaluation, leading to inappropriate treatments and delayed correct
+  diagnoses for numerous patients before the pattern is recognized.
+severity: 0.5
+stage: (5) Scoring
+dimension: Intelligibility
+about: todo
+---
+
+todo

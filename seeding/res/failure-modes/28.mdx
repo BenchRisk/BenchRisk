@@ -1,0 +1,21 @@
+---
+number: 28
+dateAdded: '2025-04-01'
+dateUpdated: '2025-04-01'
+short: Evaluator tuned to SUT failing outputs and cannot generalize to new SUTs
+example: The benchmark team fine-tunes an automated evaluator using outputs from a
+  specific SUT—say, an earlier version of a proprietary model like GPT-3.5—that exhibits
+  particular failure modes such as verbosity, evasiveness, or specific phrasing patterns.
+  The evaluator learns to detect and penalize these patterns, mistaking them for general
+  quality issues. When a new, structurally different SUT is evaluated—such as a model
+  trained with more concise or stylistically different outputs—the evaluator misjudges
+  its performance, either unfairly penalizing it or awarding inflated scores. The
+  benchmark user, relying on evaluator scores, selects a model that aligns with legacy
+  failure patterns rather than actual quality or safety in novel systems.
+severity: 0.6
+stage: (4) Output Evaluation
+dimension: Correctness
+about: todo
+---
+
+todo

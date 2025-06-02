@@ -1,0 +1,24 @@
+---
+number: 51
+dateAdded: '2025-04-01'
+dateUpdated: '2025-04-01'
+short: SUT developers are not bound to adhere to benchmark integrity requirements
+example: A benchmark for evaluating the safety of language models prohibits the use
+  of external knowledge during evaluation to ensure the model's responses are based
+  solely on its training data. However, the developers of "GuardianAI," while submitting
+  their model to the benchmark, secretly implement a retrieval mechanism that allows
+  the model to access and incorporate real-time information from the internet during
+  the evaluation process. This circumvents the benchmark's intended constraints and
+  leads to inflated safety scores, as the model can draw upon external resources to
+  avoid generating harmful content in the specific benchmark scenarios. A user, trusting
+  the benchmark's results, selects GuardianAI believing it has robust internal safety
+  mechanisms, only to discover in real-world use that it can still generate harmful
+  content when disconnected from external resources or when faced with novel prompts
+  not covered by its retrieval strategy.
+severity: 0.7
+stage: (7) Upkeep
+dimension: Longevity
+about: todo
+---
+
+todo
