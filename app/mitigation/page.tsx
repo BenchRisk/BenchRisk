@@ -8,8 +8,8 @@ export const metadata = genPageMetadata({ title: 'Mitigations' })
 
 export default function Page() {
   const sortedMitigations = allMitigations.sort((a, b) => {
-    return a.mitigationNumber - b.mitigationNumber;
-  });
+    return a.mitigationNumber - b.mitigationNumber
+  })
 
   //const mainContent = coreContent(author)
 
