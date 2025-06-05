@@ -100,6 +100,16 @@ export default function ScoreLayout({
   })
   const displayScores = filteredScores;
 
+  function renderObject(obj) {
+    if(typeof(obj) == "number") {
+      return obj.toString();
+    } else if(typeof(obj) == "string") {
+      return obj;
+    } else if(Array.isArray(obj)) {
+      return obj.map((item) => renderObject(item)).join(', ');
+    }
+  }
+
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -142,7 +152,7 @@ export default function ScoreLayout({
               <ul>
                 {Object.entries(score).map(([key, value]) => (
                   <li key={key}>
-                    {key}: {typeof(value) == "number" ||  typeof(value) == "string" ? value.toString(): typeof(value)}</li>
+                    {key}: {renderObject(value)}</li>
                 ))}
               </ul>
             </div>;
