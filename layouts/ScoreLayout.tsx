@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
-import type { Score } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import Drawer from '@/components/Drawer'
 import siteMetadata from '@/data/siteMetadata'
