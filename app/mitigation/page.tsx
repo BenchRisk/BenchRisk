@@ -15,9 +15,7 @@ export default function Page() {
 
   return (
     <>
-      <MitigationLayout mitigations={sortedMitigations}>
-        todo
-      </MitigationLayout>
+      <MitigationLayout mitigations={sortedMitigations}></MitigationLayout>
     </>
   )
 }
