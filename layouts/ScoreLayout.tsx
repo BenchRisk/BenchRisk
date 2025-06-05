@@ -142,8 +142,7 @@ export default function ScoreLayout({
               <ul>
                 {Object.entries(score).map(([key, value]) => (
                   <li key={key}>
-                    {key}: {value.toString()}
-                  </li>
+                    {key}: {typeof(value) == "number" ||  typeof(value) == "string" ? value.toString(): typeof(value)}</li>
                 ))}
               </ul>
             </div>;
