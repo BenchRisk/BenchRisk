@@ -15,9 +15,7 @@ export default function Page() {
 
   return (
     <>
-      <ModeLayout modes={sortedModes}>
-        todo
-      </ModeLayout>
+      <ModeLayout modes={sortedModes}></ModeLayout>
     </>
   )
 }

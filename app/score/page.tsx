@@ -117,9 +117,7 @@ export default function Page() {
 
   return (
     <>
-      <ScoreLayout scores={sortedScores}>
-        todo
-      </ScoreLayout>
+      <ScoreLayout scores={sortedScores}></ScoreLayout>
     </>
   )
 }
