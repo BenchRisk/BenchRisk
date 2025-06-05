@@ -5,94 +5,8 @@ import { Dialog } from '@headlessui/react'
 import { ReactIconInline } from 'components/Icons'
 import { MDXLayoutRenderer } from 'pliny/mdx-components'
 
-function renderActionIcons(entry) {
-  const { demo, bibtex, paper, poster, slides, video } = entry
-
-  if (!(demo || bibtex || paper || poster || slides || video)) {
-    return false
-  }
-
-  const activeColor = 'black'
-
-  return (
-    <div className="space-y-4 xl:col-span-4">
-      <div className="prose flex max-w-none justify-between text-gray-500 dark:text-gray-400">
-        {demo ? (
-          <a href={demo}>
-            <ReactIconInline i="LuMousePointerClick" color={activeColor}>
-              Demo
-            </ReactIconInline>
-          </a>
-        ) : (
-          ''
-        )}
-        {video ? (
-          <a href={video}>
-            <ReactIconInline i="MdOutlineOndemandVideo" color={activeColor}>
-              Video
-            </ReactIconInline>
-          </a>
-        ) : (
-          ''
-        )}
-        {slides ? (
-          <a href={slides}>
-            <ReactIconInline i="HiOutlinePresentationChartBar" color={activeColor}>
-              Slides
-            </ReactIconInline>
-          </a>
-        ) : (
-          ''
-        )}
-        {poster ? (
-          <a href={poster}>
-            <ReactIconInline i="PiVideoConferenceLight" color={activeColor}>
-              Poster
-            </ReactIconInline>
-          </a>
-        ) : (
-          ''
-        )}
-        {paper ? (
-          <a href={paper}>
-            <ReactIconInline i="SiArxiv" color={'black'}>
-              Paper
-            </ReactIconInline>
-          </a>
-        ) : (
-          ''
-        )}
-        {/* {bibtex ? <ReactIconInline i="PiMapPinSimpleAreaLight" color={activeColor}>Bibtex</ReactIconInline> : ""} */}
-      </div>
-    </div>
-  )
-}
-
-function tableRow(title, val) {
-  if (!val) {
-    return <></>
-  }
-
-  return (
-    <div className="sm:flex sm:px-6 sm:py-5">
-      <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0 lg:w-48">
-        {title}
-      </dt>
-      <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">{val}</dd>
-    </div>
-  )
-}
-
-export default function Entry({ entry, service = false }) {
+export default function Drawer({ title, contents, service = false }) {
   const [open, setOpen] = useState(false)
-
-  const { title, citation, venue, draft, year, authors, highlight } = entry
-
-  if (draft) {
-    return <></>
-  }
-
-  const cite = service ? year + ':  ' + title : citation
 
   return (
     <li className="w-full">
@@ -100,8 +14,7 @@ export default function Entry({ entry, service = false }) {
         onClick={() => setOpen(true)}
         className="zoom flex w-full rounded bg-transparent px-4 py-2 text-left font-bold text-pink-500 hover:bg-gray-500 hover:bg-opacity-20 hover:text-pink-400"
       >
-        {highlight ? <ReactIconInline size={25} i="FaStar" /> : <></>}
-        {cite}
+        {title}
       </button>
       <Dialog open={open} onClose={setOpen} className="relative z-10">
         <div className="fixed inset-0" />
@@ -139,21 +52,7 @@ export default function Entry({ entry, service = false }) {
                         <div className="divide-y divide-gray-200">
                           <div className="px-4 py-5 sm:px-0 sm:py-0">
                             <dl className="space-y-8 sm:space-y-0 sm:divide-y sm:divide-gray-200">
-                              {tableRow('People', entry.authors)}
-                              {tableRow('Venue', entry.venue)}
-                              {tableRow('Year', entry.year)}
-                              {tableRow('Links', renderActionIcons(entry))}
-                              <div className="sm:flex sm:px-6 sm:py-5">
-                                <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0 lg:w-48">
-                                  Description
-                                </dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">
-                                  <div className="prose space-y-4 xl:col-span-4">
-                                    <MDXLayoutRenderer code={entry.body.code} />
-                                  </div>
-                                </dd>
-                              </div>
-                              {tableRow('Citation', entry.citation)}
+                              {contents}
                             </dl>
                           </div>
                         </div>

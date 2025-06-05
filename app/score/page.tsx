@@ -96,6 +96,7 @@ export default function Page() {
       intelligibilityScore: intelligibilityScore,
       correctnessScore: correctnessScore,
       consistencyScore: consistencyScore,
+      comprehensivenessScore: comprehensivenessScore,
       totalScore: totalRiskMitigated/totalRisk,
       averageScore: (longevityScore + intelligibilityScore + correctnessScore + consistencyScore + comprehensivenessScore)/5.0,
       minScore: Math.min(longevityScore, intelligibilityScore, correctnessScore, consistencyScore, comprehensivenessScore),
@@ -109,7 +110,7 @@ export default function Page() {
   })
 
   const sortedScores = scored.sort((a, b) => {
-    return a.totalScore - b.totalScore;
+    return b.totalScore - a.totalScore;
   });
 
   //const mainContent = coreContent(author)

@@ -5,17 +5,107 @@ import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Score } from 'contentlayer/generated'
 import Link from '@/components/Link'
+import Drawer from '@/components/Drawer'
+// import Alert from '@/components/Alert'
 import siteMetadata from '@/data/siteMetadata'
+
+function scoreBar(score, dimension, last=false) {
+  return (
+    <div>
+      <div aria-hidden="true" className="mt-6">
+        <div className="overflow-hidden rounded-full bg-red-800">
+          <div style={{ width: Math.round(score*100) + '%' }} className="h-2 rounded-full bg-indigo-600" />
+        </div>
+        { last ? (
+          <div className="mt-6 hidden grid-cols-1 text-sm font-medium text-gray-600 sm:grid">
+            {/* <div className="text-indigo-600">Known Unreliable</div> */}
+            <div className="text-center">
+              <span className="text-indigo-600">{Math.round(score*100)}</span> percent of known
+              <span className="text-indigo-600"> {dimension} </span>{ }risk mitigated
+            </div>
+            {/* <div className="text-right text-indigo-600">All Known Risks Mitigated</div> */}
+          </div>
+        ) : (
+          <div className="mt-6 hidden grid-cols-1 text-sm font-medium text-gray-600 sm:grid">
+            <div className="text-center">
+              <span className="text-indigo-600">{Math.round(score*100)}</span> percent of known
+              <span className="text-indigo-600"> {dimension} </span>{ }risk mitigated
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// Provide a list of reliability statements for the benchmark
+function scoreFindings(intelligibilityScore, consistencyScore, comprehensivenessScore, correctnessScore, longevityScore) {
+  const highThreshold = 0.7;
+  const lowThreshold = 0.5;
+
+  let color = intelligibilityScore >= highThreshold ? "gray" : (intelligibilityScore >= lowThreshold ? "yellow" : "red");
+  let style = `inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`
+  const intelligibilityStatement = <>
+    <span className={style}>
+      {intelligibilityScore >= highThreshold ? "lower" : (intelligibilityScore >= lowThreshold ? "moderate" : "high")} risk of misunderstanding
+    </span> what the benchmark evidences.
+  </>;
+
+  color = consistencyScore >= highThreshold ? "gray" : (consistencyScore >= lowThreshold ? "yellow" : "red");
+  style = `inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`
+  const consistencyStatement = <>
+    <span className={style}>
+      {consistencyScore >= highThreshold ? "lower" : (consistencyScore >= lowThreshold ? "moderate" : "high")} risk of randomness misleading
+    </span> via scores not representative of the system.
+  </>;
+
+  color = comprehensivenessScore >= highThreshold ? "gray" : (comprehensivenessScore >= lowThreshold ? "yellow" : "red");
+  style = `inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`
+  const comprehensivenessStatement = <>
+    <span className={style}>
+      {comprehensivenessScore >= highThreshold ? "lower" : (comprehensivenessScore >= lowThreshold ? "moderate" : "high")} risk of circumstance not being covered
+    </span> when the benchmark may reasonably be expected to cover the circumstance.
+  </>;
+
+  color = correctnessScore >= highThreshold ? "gray" : (correctnessScore >= lowThreshold ? "yellow" : "red");
+  style = `inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`
+  const correctnessStatement = <>
+    <span className={style}>
+      {correctnessScore >= highThreshold ? "lower" : (correctnessScore >= lowThreshold ? "moderate" : "high")} risk of statistically biased
+    </span> results misleading.
+  </>;
+
+  color = longevityScore >= highThreshold ? "gray" : (longevityScore >= lowThreshold ? "yellow" : "red");
+  style = `inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`
+  const longevityStatement = <>
+    <span className={style}>
+      {longevityScore >= highThreshold ? "lower" : (longevityScore >= lowThreshold ? "moderate" : "high")} risk of information degrading
+    </span> through time.
+  </>;
+
+  return (
+    <>
+    People relying on this benchmark for real world decision making are at a...
+    <ul>
+      <li>{longevityStatement}</li>
+      <li>{correctnessStatement}</li>
+      <li>{intelligibilityStatement}</li>
+      <li>{comprehensivenessStatement}</li>
+      <li>{consistencyStatement}</li>
+    </ul>
+    </>
+  )
+}
 
 export default function ScoreLayout({
   scores,
 }) {
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState('');
   const filteredScores = scores.filter((score) => {
     const searchContent = score.name + ' ' + score.benchmarkDescription + ' ' + score.reference + ' ' + score.dateScored.toString()
-    return searchContent.toLowerCase().includes(searchValue.toLowerCase())
+    return searchContent.toLowerCase().includes(searchValue.toLowerCase());
   })
-  const displayScores = filteredScores
+  const displayScores = filteredScores;
 
   return (
     <>
@@ -54,38 +144,46 @@ export default function ScoreLayout({
         <ul>
           {!filteredScores.length && 'No scores found.'}
           {displayScores.map((score) => {
+            const rawData = <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+              <h2>Raw Data</h2>
+              <ul>
+                {Object.entries(score).map(([key, value]) => (
+                  <li key={key}>
+                    {key}: {value.toString()}
+                  </li>
+                ))}
+              </ul>
+            </div>;
 
-            const { benchmarkDescription, reference, name, dateScored, adoptedMitigations, numberOfMitigations } = score
+            const { benchmarkDescription, reference, name, minScore, dateScored, adoptedMitigations, numberOfMitigations, intelligibilityScore, consistencyScore, comprehensivenessScore, correctnessScore, longevityScore } = score
             return (
               <li key={"Score" + name} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <dl>
-                    <dt className="sr-only">Published on</dt>
+                    <dt className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">Scored on</dt>
                     <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      {name}
+                      <time dateTime={dateScored}>{formatDate(dateScored, siteMetadata.locale)}</time>
                     </dd>
+                    <dt className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">{adoptedMitigations.length} adopted mitigations</dt>
+                    <dt className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">minimum score of {Math.round(minScore*100)}</dt>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
                         <Link href={`/todo`} className="text-gray-900 dark:text-gray-100">
-                          {name}: {benchmarkDescription}
+                          {name}
                         </Link>
                       </h3>
-                    </div>
-                    <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                      {adoptedMitigations.length} should equal {numberOfMitigations}
-                      Update <time dateTime={dateScored}>{formatDate(dateScored, siteMetadata.locale)}</time>
-                          <div>
-                            <h2>Object Entries</h2>
-                            <ul>
-                              {Object.entries(score).map(([key, value]) => (
-                                <li key={key}>
-                                  {key}: {value.toString()}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                      <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                        {scoreFindings(intelligibilityScore, consistencyScore, comprehensivenessScore, correctnessScore, longevityScore)}
+                         Numerically, this is supported by the following scores:
+                      </div>
+                      {scoreBar(longevityScore, 'longevity')}
+                      {scoreBar(correctnessScore, 'correctness')}
+                      {scoreBar(intelligibilityScore, 'intelligibility')}
+                      {scoreBar(comprehensivenessScore, 'comprehensiveness')}
+                      {scoreBar(consistencyScore, 'consistency', true)}
+                      <Drawer title={"Raw data"} contents={rawData}></Drawer>
                     </div>
                   </div>
                 </article>
