@@ -60,21 +60,34 @@ export default function MitigationLayout({
               <li key={"Mitigation" + mitigationNumber} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <dl>
-                    <dt className="sr-only">Published on</dt>
-                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={dateAdded}>{formatDate(dateAdded, siteMetadata.locale)}</time>
-                    </dd>
+                    <ul className="flex flex-col space-y-1 xl:col-span-1">
+                    <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
+                      Mitigation {mitigationNumber}
+                    </li>
+                    <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
+                      for <Link href={'/mode#failure%20mode%20' + mitigatedNumber + '%20'}>Failure Mode {mitigatedNumber}</Link>
+                    </li>
+                    <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      Severity Reduction {severityReductionPercent.toString()}
+                    </li>
+                    <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      Likelihood Reduction {likelihoodReductionPercent.toString()}
+                    </li>
+                    {/* <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      Added <time dateTime={dateAdded}>{formatDate(dateAdded, siteMetadata.locale)}</time>
+                    </li>
+                    <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      Updated <time dateTime={dateUpdated}>{formatDate(dateUpdated, siteMetadata.locale)}</time>
+                    </li> */}
+                  </ul>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
                     <div>
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/todo`} className="text-gray-900 dark:text-gray-100">
-                          {likelihoodReductionPercent}: {questionStatement}
+                      <h3 className="text-xl font-bold leading-8 tracking-tight">
+                        <Link href={`#todo`} className="text-gray-900 dark:text-gray-100">
+                          {questionStatement}
                         </Link>
                       </h3>
-                    </div>
-                    <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                      {mitigatedNumber}
                     </div>
                   </div>
                 </article>

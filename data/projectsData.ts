@@ -7,22 +7,10 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'AI Incident Database',
+    title: 'stub',
     description: `todo todo todo.`,
-    imgSrc: '/static/images/White_AIID.svg',
-    href: 'https://incidentdatabase.ai',
-  },
-  {
-    title: 'Dyff',
-    description: `todo todo todo.`,
-    imgSrc: '/static/images/dyff.svg',
-    href: 'https://dyff.io',
-  },
-  {
-    title: 'Dyff',
-    description: `todo todo todo.`,
-    imgSrc: '/static/images/dyff.svg',
-    href: 'https://dyff.io',
+    imgSrc: '/static/images/stub.svg',
+    href: 'https://benchrisk.ai',
   },
 ]
 

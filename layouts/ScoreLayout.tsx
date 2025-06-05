@@ -6,7 +6,6 @@ import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Score } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import Drawer from '@/components/Drawer'
-// import Alert from '@/components/Alert'
 import siteMetadata from '@/data/siteMetadata'
 
 function scoreBar(score, dimension, last=false) {
@@ -43,42 +42,37 @@ function scoreFindings(intelligibilityScore, consistencyScore, comprehensiveness
   const highThreshold = 0.7;
   const lowThreshold = 0.5;
 
-  let color = intelligibilityScore >= highThreshold ? "gray" : (intelligibilityScore >= lowThreshold ? "yellow" : "red");
-  let style = `inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`
+  let color = consistencyScore >= highThreshold ? "gray" : (consistencyScore >= lowThreshold ? "yellow" : "red");
   const intelligibilityStatement = <>
-    <span className={style}>
+    <span className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}>
       {intelligibilityScore >= highThreshold ? "lower" : (intelligibilityScore >= lowThreshold ? "moderate" : "high")} risk of misunderstanding
     </span> what the benchmark evidences.
   </>;
 
   color = consistencyScore >= highThreshold ? "gray" : (consistencyScore >= lowThreshold ? "yellow" : "red");
-  style = `inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`
   const consistencyStatement = <>
-    <span className={style}>
+    <span className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}>
       {consistencyScore >= highThreshold ? "lower" : (consistencyScore >= lowThreshold ? "moderate" : "high")} risk of randomness misleading
     </span> via scores not representative of the system.
   </>;
 
   color = comprehensivenessScore >= highThreshold ? "gray" : (comprehensivenessScore >= lowThreshold ? "yellow" : "red");
-  style = `inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`
   const comprehensivenessStatement = <>
-    <span className={style}>
+    <span className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}>
       {comprehensivenessScore >= highThreshold ? "lower" : (comprehensivenessScore >= lowThreshold ? "moderate" : "high")} risk of circumstance not being covered
     </span> when the benchmark may reasonably be expected to cover the circumstance.
   </>;
 
   color = correctnessScore >= highThreshold ? "gray" : (correctnessScore >= lowThreshold ? "yellow" : "red");
-  style = `inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`
   const correctnessStatement = <>
-    <span className={style}>
+    <span className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}>
       {correctnessScore >= highThreshold ? "lower" : (correctnessScore >= lowThreshold ? "moderate" : "high")} risk of statistically biased
     </span> results misleading.
   </>;
 
   color = longevityScore >= highThreshold ? "gray" : (longevityScore >= lowThreshold ? "yellow" : "red");
-  style = `inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`
   const longevityStatement = <>
-    <span className={style}>
+    <span className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}>
       {longevityScore >= highThreshold ? "lower" : (longevityScore >= lowThreshold ? "moderate" : "high")} risk of information degrading
     </span> through time.
   </>;
@@ -155,7 +149,7 @@ export default function ScoreLayout({
               </ul>
             </div>;
 
-            const { benchmarkDescription, reference, name, minScore, dateScored, adoptedMitigations, numberOfMitigations, intelligibilityScore, consistencyScore, comprehensivenessScore, correctnessScore, longevityScore } = score
+            const { name, minScore, dateScored, adoptedMitigations, intelligibilityScore, consistencyScore, comprehensivenessScore, correctnessScore, longevityScore } = score
             return (
               <li key={"Score" + name} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">

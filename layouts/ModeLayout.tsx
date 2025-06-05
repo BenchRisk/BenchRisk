@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Modes } from 'contentlayer/generated'
@@ -10,12 +10,45 @@ import siteMetadata from '@/data/siteMetadata'
 export default function ModeLayout({
   modes,
 }) {
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState('');
   const filteredModes = modes.filter((mode) => {
-    const searchContent = mode.short + ' ' + mode.example + ' ' + mode.severity.toString() + ' ' + mode.stage + ' ' + mode.about + ' ' + mode.number.toString() + ' ' + mode.dateAdded.toString() + ' ' + mode.dateUpdated.toString()
+    const searchContent = 'failure mode ' + mode.number.toString() + ' ' + mode.short + ' ' + mode.example + ' ' + mode.severity.toString() + ' ' + mode.stage + ' ' + mode.about + ' ' + ' ' + mode.dateAdded.toString() + ' ' + mode.dateUpdated.toString();
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
-  const displayModes = filteredModes
+
+  const [hashValue, setHashValue] = useState('')
+
+  // Set input from current URL hash on mount
+  useEffect(() => {
+
+    const updateFromHash = () => {
+      const newHash = window.location.hash.slice(1)
+      setHashValue(newHash)
+      setSearchValue(decodeURIComponent(newHash));
+    }
+
+    if (typeof window !== 'undefined') {
+      const initialHash = window.location.hash.slice(1) // remove '#'
+      setHashValue(initialHash);
+      setSearchValue(decodeURIComponent(initialHash));
+      window.addEventListener('hashchange', updateFromHash);
+
+      return () => {
+        window.removeEventListener('hashchange', updateFromHash)
+      }
+    }
+  }, [])
+
+  // Update URL hash when input changes
+  const handleChange = (e) => {
+    const newHash = e.target.value;
+    setHashValue(newHash);
+    setSearchValue(newHash);
+
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `#${newHash}`)
+    }
+  }
 
   return (
     <>
@@ -30,7 +63,8 @@ export default function ModeLayout({
               <input
                 aria-label="Search Failure Modes"
                 type="text"
-                onChange={(e) => setSearchValue(e.target.value)}
+                value={decodeURIComponent(hashValue)}
+                onChange={handleChange}
                 placeholder="Search failure modes"
                 className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
               />
@@ -53,27 +87,40 @@ export default function ModeLayout({
         </div>
         <ul>
           {!filteredModes.length && 'No failure modes found.'}
-          {displayModes.map((mode) => {
+          {filteredModes.map((mode) => {
             const { number, short, example, severity, stage, about, dateAdded, dateUpdated } = mode
             return (
               <li key={"FailureMode" + number} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                  <dl>
-                    <dt className="sr-only">Published on</dt>
-                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={dateAdded}>{formatDate(dateAdded, siteMetadata.locale)}</time>
-                    </dd>
-                  </dl>
+                  <ul className="flex flex-col space-y-1 xl:col-span-1">
+                    <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
+                      <Link href={`#failure mode ${number}`} className="text-gray-900 dark:text-gray-100">
+                        Failure Mode {number}
+                      </Link>
+                    </li>
+                    <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      {mode.dimension} Severity {mode.severity.toString()}
+                    </li>
+                    <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      Benchmark Stage {mode.stage}
+                    </li>
+                    <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      Added <time dateTime={dateAdded}>{formatDate(dateAdded, siteMetadata.locale)}</time>
+                    </li>
+                    <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      Updated <time dateTime={dateUpdated}>{formatDate(dateUpdated, siteMetadata.locale)}</time>
+                    </li>
+                  </ul>
                   <div className="space-y-3 xl:col-span-3">
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/todo`} className="text-gray-900 dark:text-gray-100">
-                          {number}: {short}
-                        </Link>
+                        {/* <Link href={`#todo`} className="text-gray-900 dark:text-gray-100"> */}
+                          {short}
+                        {/* </Link> */}
                       </h3>
                     </div>
                     <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                      {example}
+                      Example realization: <span className="italic">{example}</span>
                     </div>
                   </div>
                 </article>

@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'BenchRisk.ai',
   author: 'BenchRisk Maintainers',
-  headerTitle: 'Machine Learning Benchmarking Risks',
+  headerTitle: '',
   description: 'A collection of benchmark failure modes and what benchmarks are doing to mitigate them.',
   language: 'en-us',
   theme: 'dark', // system, dark or light
