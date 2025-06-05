@@ -47,9 +47,13 @@ export default function Page() {
     const riskMap = new Map(allModes.map(mode => [mode.number, {initialSeverity: mode.severity, mitigatedSeverity: mode.severity, mitigatedLikelihood: 1.0, dimension: mode.dimension}]));
 
     // Reduce the severity or likelihood by their mitigations
-    score.adoptedMitigations.forEach(mitigationNumber => {
+    (score.adoptedMitigations ?? []).forEach(mitigationNumber => {
       const mitigation = mitigationMap.get(mitigationNumber);
+      if(!mitigation)
+        return;
       const riskScore = riskMap.get(mitigation.mitigatedNumber);
+      if(!riskScore)
+        return;
       riskScore.mitigatedSeverity -= mitigation.severityReductionPercent * riskScore.mitigatedSeverity / 100.0;
       riskScore.mitigatedLikelihood -= mitigation.likelihoodReductionPercent * riskScore.mitigatedLikelihood / 100.0;
     });
