@@ -6,12 +6,22 @@ import { CoreContent } from 'pliny/utils/contentlayer'
 import Link from '@/components/Link'
 import siteMetadata from '@/data/siteMetadata'
 
-export default function MitigationLayout({
-  mitigations,
-}) {
+export default function MitigationLayout({ mitigations }) {
   const [searchValue, setSearchValue] = useState('')
   const filteredMitigations = mitigations.filter((mitigation) => {
-    const searchContent = mitigation.mitigationNumber.toString() + ' ' + mitigation.mitigatedNumber.toString() + ' ' + mitigation.dateAdded.toString() + ' ' + mitigation.dateUpdated.toString() + mitigation.questionStatement + ' ' + mitigation.severityReductionPercent.toString() + ' ' + mitigation.likelihoodReductionPercent.toString()
+    const searchContent =
+      mitigation.mitigationNumber.toString() +
+      ' ' +
+      mitigation.mitigatedNumber.toString() +
+      ' ' +
+      mitigation.dateAdded.toString() +
+      ' ' +
+      mitigation.dateUpdated.toString() +
+      mitigation.questionStatement +
+      ' ' +
+      mitigation.severityReductionPercent.toString() +
+      ' ' +
+      mitigation.likelihoodReductionPercent.toString()
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
   const displayMitigations = filteredMitigations
@@ -53,32 +63,42 @@ export default function MitigationLayout({
         <ul>
           {!filteredMitigations.length && 'No mitigations found.'}
           {displayMitigations.map((mitigation) => {
-
-            const { mitigationNumber, mitigatedNumber, dateAdded, dateUpdated, severityReductionPercent, likelihoodReductionPercent, questionStatement } = mitigation
+            const {
+              mitigationNumber,
+              mitigatedNumber,
+              dateAdded,
+              dateUpdated,
+              severityReductionPercent,
+              likelihoodReductionPercent,
+              questionStatement,
+            } = mitigation
             return (
-              <li key={"Mitigation" + mitigationNumber} className="py-4">
+              <li key={'Mitigation' + mitigationNumber} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <dl>
                     <ul className="flex flex-col space-y-1 xl:col-span-1">
-                    <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
-                      Mitigation {mitigationNumber}
-                    </li>
-                    <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
-                      for <Link href={'/mode#failure%20mode%20' + mitigatedNumber + '%20'}>Failure Mode {mitigatedNumber}</Link>
-                    </li>
-                    <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      Severity Reduction {severityReductionPercent.toString()}
-                    </li>
-                    <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      Likelihood Reduction {likelihoodReductionPercent.toString()}
-                    </li>
-                    {/* <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
+                        Mitigation {mitigationNumber}
+                      </li>
+                      <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
+                        for{' '}
+                        <Link href={'/mode#failure%20mode%20' + mitigatedNumber + '%20'}>
+                          Failure Mode {mitigatedNumber}
+                        </Link>
+                      </li>
+                      <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        Severity Reduction {severityReductionPercent.toString()}
+                      </li>
+                      <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        Likelihood Reduction {likelihoodReductionPercent.toString()}
+                      </li>
+                      {/* <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                       Added <time dateTime={dateAdded}>{formatDate(dateAdded, siteMetadata.locale)}</time>
                     </li>
                     <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                       Updated <time dateTime={dateUpdated}>{formatDate(dateUpdated, siteMetadata.locale)}</time>
                     </li> */}
-                  </ul>
+                    </ul>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
                     <div>

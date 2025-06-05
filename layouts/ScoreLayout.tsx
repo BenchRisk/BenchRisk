@@ -7,27 +7,32 @@ import Link from '@/components/Link'
 import Drawer from '@/components/Drawer'
 import siteMetadata from '@/data/siteMetadata'
 
-function scoreBar(score, dimension, last=false) {
+function scoreBar(score, dimension, last = false) {
   return (
     <div>
       <div aria-hidden="true" className="mt-6">
         <div className="overflow-hidden rounded-full bg-red-800">
-          <div style={{ width: Math.round(score*100) + '%' }} className="h-2 rounded-full bg-indigo-600" />
+          <div
+            style={{ width: Math.round(score * 100) + '%' }}
+            className="h-2 rounded-full bg-indigo-600"
+          />
         </div>
-        { last ? (
+        {last ? (
           <div className="mt-6 hidden grid-cols-1 text-sm font-medium text-gray-600 sm:grid">
             {/* <div className="text-indigo-600">Known Unreliable</div> */}
             <div className="text-center">
-              <span className="text-indigo-600">{Math.round(score*100)}</span> percent of known
-              <span className="text-indigo-600"> {dimension} </span>{ }risk mitigated
+              <span className="text-indigo-600">{Math.round(score * 100)}</span> percent of known
+              <span className="text-indigo-600"> {dimension} </span>
+              {}risk mitigated
             </div>
             {/* <div className="text-right text-indigo-600">All Known Risks Mitigated</div> */}
           </div>
         ) : (
           <div className="mt-6 hidden grid-cols-1 text-sm font-medium text-gray-600 sm:grid">
             <div className="text-center">
-              <span className="text-indigo-600">{Math.round(score*100)}</span> percent of known
-              <span className="text-indigo-600"> {dimension} </span>{ }risk mitigated
+              <span className="text-indigo-600">{Math.round(score * 100)}</span> percent of known
+              <span className="text-indigo-600"> {dimension} </span>
+              {}risk mitigated
             </div>
           </div>
         )}
@@ -37,76 +42,146 @@ function scoreBar(score, dimension, last=false) {
 }
 
 // Provide a list of reliability statements for the benchmark
-function scoreFindings(intelligibilityScore, consistencyScore, comprehensivenessScore, correctnessScore, longevityScore) {
-  const highThreshold = 0.7;
-  const lowThreshold = 0.5;
+function scoreFindings(
+  intelligibilityScore,
+  consistencyScore,
+  comprehensivenessScore,
+  correctnessScore,
+  longevityScore
+) {
+  const highThreshold = 0.7
+  const lowThreshold = 0.5
 
-  let color = consistencyScore >= highThreshold ? "gray" : (consistencyScore >= lowThreshold ? "yellow" : "red");
-  const intelligibilityStatement = <>
-    <span className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}>
-      {intelligibilityScore >= highThreshold ? "lower" : (intelligibilityScore >= lowThreshold ? "moderate" : "high")} risk of misunderstanding
-    </span> what the benchmark evidences.
-  </>;
+  let color =
+    consistencyScore >= highThreshold ? 'gray' : consistencyScore >= lowThreshold ? 'yellow' : 'red'
+  const intelligibilityStatement = (
+    <>
+      <span
+        className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}
+      >
+        {intelligibilityScore >= highThreshold
+          ? 'lower'
+          : intelligibilityScore >= lowThreshold
+            ? 'moderate'
+            : 'high'}{' '}
+        risk of misunderstanding
+      </span>{' '}
+      what the benchmark evidences.
+    </>
+  )
 
-  color = consistencyScore >= highThreshold ? "gray" : (consistencyScore >= lowThreshold ? "yellow" : "red");
-  const consistencyStatement = <>
-    <span className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}>
-      {consistencyScore >= highThreshold ? "lower" : (consistencyScore >= lowThreshold ? "moderate" : "high")} risk of randomness misleading
-    </span> via scores not representative of the system.
-  </>;
+  color =
+    consistencyScore >= highThreshold ? 'gray' : consistencyScore >= lowThreshold ? 'yellow' : 'red'
+  const consistencyStatement = (
+    <>
+      <span
+        className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}
+      >
+        {consistencyScore >= highThreshold
+          ? 'lower'
+          : consistencyScore >= lowThreshold
+            ? 'moderate'
+            : 'high'}{' '}
+        risk of randomness misleading
+      </span>{' '}
+      via scores not representative of the system.
+    </>
+  )
 
-  color = comprehensivenessScore >= highThreshold ? "gray" : (comprehensivenessScore >= lowThreshold ? "yellow" : "red");
-  const comprehensivenessStatement = <>
-    <span className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}>
-      {comprehensivenessScore >= highThreshold ? "lower" : (comprehensivenessScore >= lowThreshold ? "moderate" : "high")} risk of circumstance not being covered
-    </span> when the benchmark may reasonably be expected to cover the circumstance.
-  </>;
+  color =
+    comprehensivenessScore >= highThreshold
+      ? 'gray'
+      : comprehensivenessScore >= lowThreshold
+        ? 'yellow'
+        : 'red'
+  const comprehensivenessStatement = (
+    <>
+      <span
+        className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}
+      >
+        {comprehensivenessScore >= highThreshold
+          ? 'lower'
+          : comprehensivenessScore >= lowThreshold
+            ? 'moderate'
+            : 'high'}{' '}
+        risk of circumstance not being covered
+      </span>{' '}
+      when the benchmark may reasonably be expected to cover the circumstance.
+    </>
+  )
 
-  color = correctnessScore >= highThreshold ? "gray" : (correctnessScore >= lowThreshold ? "yellow" : "red");
-  const correctnessStatement = <>
-    <span className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}>
-      {correctnessScore >= highThreshold ? "lower" : (correctnessScore >= lowThreshold ? "moderate" : "high")} risk of statistically biased
-    </span> results misleading.
-  </>;
+  color =
+    correctnessScore >= highThreshold ? 'gray' : correctnessScore >= lowThreshold ? 'yellow' : 'red'
+  const correctnessStatement = (
+    <>
+      <span
+        className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}
+      >
+        {correctnessScore >= highThreshold
+          ? 'lower'
+          : correctnessScore >= lowThreshold
+            ? 'moderate'
+            : 'high'}{' '}
+        risk of statistically biased
+      </span>{' '}
+      results misleading.
+    </>
+  )
 
-  color = longevityScore >= highThreshold ? "gray" : (longevityScore >= lowThreshold ? "yellow" : "red");
-  const longevityStatement = <>
-    <span className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}>
-      {longevityScore >= highThreshold ? "lower" : (longevityScore >= lowThreshold ? "moderate" : "high")} risk of information degrading
-    </span> through time.
-  </>;
+  color =
+    longevityScore >= highThreshold ? 'gray' : longevityScore >= lowThreshold ? 'yellow' : 'red'
+  const longevityStatement = (
+    <>
+      <span
+        className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}
+      >
+        {longevityScore >= highThreshold
+          ? 'lower'
+          : longevityScore >= lowThreshold
+            ? 'moderate'
+            : 'high'}{' '}
+        risk of information degrading
+      </span>{' '}
+      through time.
+    </>
+  )
 
   return (
     <>
-    People relying on this benchmark for real world decision making are at a...
-    <ul>
-      <li>{longevityStatement}</li>
-      <li>{correctnessStatement}</li>
-      <li>{intelligibilityStatement}</li>
-      <li>{comprehensivenessStatement}</li>
-      <li>{consistencyStatement}</li>
-    </ul>
+      People relying on this benchmark for real world decision making are at a...
+      <ul>
+        <li>{longevityStatement}</li>
+        <li>{correctnessStatement}</li>
+        <li>{intelligibilityStatement}</li>
+        <li>{comprehensivenessStatement}</li>
+        <li>{consistencyStatement}</li>
+      </ul>
     </>
   )
 }
 
-export default function ScoreLayout({
-  scores,
-}) {
-  const [searchValue, setSearchValue] = useState('');
+export default function ScoreLayout({ scores }) {
+  const [searchValue, setSearchValue] = useState('')
   const filteredScores = scores.filter((score) => {
-    const searchContent = score.name + ' ' + score.benchmarkDescription + ' ' + score.reference + ' ' + score.dateScored.toString()
-    return searchContent.toLowerCase().includes(searchValue.toLowerCase());
+    const searchContent =
+      score.name +
+      ' ' +
+      score.benchmarkDescription +
+      ' ' +
+      score.reference +
+      ' ' +
+      score.dateScored.toString()
+    return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
-  const displayScores = filteredScores;
+  const displayScores = filteredScores
 
   function renderObject(obj) {
-    if(typeof(obj) == "number") {
-      return obj.toString();
-    } else if(typeof(obj) == "string") {
-      return obj;
-    } else if(Array.isArray(obj)) {
-      return obj.map((item) => renderObject(item)).join(', ');
+    if (typeof obj == 'number') {
+      return obj.toString()
+    } else if (typeof obj == 'string') {
+      return obj
+    } else if (Array.isArray(obj)) {
+      return obj.map((item) => renderObject(item)).join(', ')
     }
   }
 
@@ -147,27 +222,48 @@ export default function ScoreLayout({
         <ul>
           {!filteredScores.length && 'No scores found.'}
           {displayScores.map((score) => {
-            const rawData = <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-              <h2>Raw Data</h2>
-              <ul>
-                {Object.entries(score).map(([key, value]) => (
-                  <li key={key}>
-                    {key}: {renderObject(value)}</li>
-                ))}
-              </ul>
-            </div>;
+            const rawData = (
+              <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                <h2>Raw Data</h2>
+                <ul>
+                  {Object.entries(score).map(([key, value]) => (
+                    <li key={key}>
+                      {key}: {renderObject(value)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
 
-            const { name, minScore, dateScored, adoptedMitigations, intelligibilityScore, consistencyScore, comprehensivenessScore, correctnessScore, longevityScore } = score
+            const {
+              name,
+              minScore,
+              dateScored,
+              adoptedMitigations,
+              intelligibilityScore,
+              consistencyScore,
+              comprehensivenessScore,
+              correctnessScore,
+              longevityScore,
+            } = score
             return (
-              <li key={"Score" + name} className="py-4">
+              <li key={'Score' + name} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <dl>
-                    <dt className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">Scored on</dt>
+                    <dt className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      Scored on
+                    </dt>
                     <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={dateScored}>{formatDate(dateScored, siteMetadata.locale)}</time>
+                      <time dateTime={dateScored}>
+                        {formatDate(dateScored, siteMetadata.locale)}
+                      </time>
                     </dd>
-                    <dt className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">{adoptedMitigations.length} adopted mitigations</dt>
-                    <dt className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">minimum score of {Math.round(minScore*100)}</dt>
+                    <dt className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      {adoptedMitigations.length} adopted mitigations
+                    </dt>
+                    <dt className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      minimum score of {Math.round(minScore * 100)}
+                    </dt>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
                     <div>
@@ -177,15 +273,21 @@ export default function ScoreLayout({
                         </Link>
                       </h3>
                       <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                        {scoreFindings(intelligibilityScore, consistencyScore, comprehensivenessScore, correctnessScore, longevityScore)}
-                         Numerically, this is supported by the following scores:
+                        {scoreFindings(
+                          intelligibilityScore,
+                          consistencyScore,
+                          comprehensivenessScore,
+                          correctnessScore,
+                          longevityScore
+                        )}
+                        Numerically, this is supported by the following scores:
                       </div>
                       {scoreBar(longevityScore, 'longevity')}
                       {scoreBar(correctnessScore, 'correctness')}
                       {scoreBar(intelligibilityScore, 'intelligibility')}
                       {scoreBar(comprehensivenessScore, 'comprehensiveness')}
                       {scoreBar(consistencyScore, 'consistency', true)}
-                      <Drawer title={"Raw data"} contents={rawData}></Drawer>
+                      <Drawer title={'Raw data'} contents={rawData}></Drawer>
                     </div>
                   </div>
                 </article>

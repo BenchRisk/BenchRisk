@@ -8,8 +8,8 @@ export const metadata = genPageMetadata({ title: 'Failure Modes' })
 
 export default function Page() {
   const sortedModes = allModes.sort((a, b) => {
-    return a.number - b.number;
-  });
+    return a.number - b.number
+  })
 
   //const mainContent = coreContent(author)
 

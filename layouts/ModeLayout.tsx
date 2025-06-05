@@ -6,12 +6,27 @@ import { CoreContent } from 'pliny/utils/contentlayer'
 import Link from '@/components/Link'
 import siteMetadata from '@/data/siteMetadata'
 
-export default function ModeLayout({
-  modes,
-}) {
-  const [searchValue, setSearchValue] = useState('');
+export default function ModeLayout({ modes }) {
+  const [searchValue, setSearchValue] = useState('')
   const filteredModes = modes.filter((mode) => {
-    const searchContent = 'failure mode ' + mode.number.toString() + ' ' + mode.short + ' ' + mode.example + ' ' + mode.severity.toString() + ' ' + mode.stage + ' ' + mode.about + ' ' + ' ' + mode.dateAdded.toString() + ' ' + mode.dateUpdated.toString();
+    const searchContent =
+      'failure mode ' +
+      mode.number.toString() +
+      ' ' +
+      mode.short +
+      ' ' +
+      mode.example +
+      ' ' +
+      mode.severity.toString() +
+      ' ' +
+      mode.stage +
+      ' ' +
+      mode.about +
+      ' ' +
+      ' ' +
+      mode.dateAdded.toString() +
+      ' ' +
+      mode.dateUpdated.toString()
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 
@@ -19,18 +34,17 @@ export default function ModeLayout({
 
   // Set input from current URL hash on mount
   useEffect(() => {
-
     const updateFromHash = () => {
       const newHash = window.location.hash.slice(1)
       setHashValue(newHash)
-      setSearchValue(decodeURIComponent(newHash));
+      setSearchValue(decodeURIComponent(newHash))
     }
 
     if (typeof window !== 'undefined') {
       const initialHash = window.location.hash.slice(1) // remove '#'
-      setHashValue(initialHash);
-      setSearchValue(decodeURIComponent(initialHash));
-      window.addEventListener('hashchange', updateFromHash);
+      setHashValue(initialHash)
+      setSearchValue(decodeURIComponent(initialHash))
+      window.addEventListener('hashchange', updateFromHash)
 
       return () => {
         window.removeEventListener('hashchange', updateFromHash)
@@ -40,9 +54,9 @@ export default function ModeLayout({
 
   // Update URL hash when input changes
   const handleChange = (e) => {
-    const newHash = e.target.value;
-    setHashValue(newHash);
-    setSearchValue(newHash);
+    const newHash = e.target.value
+    setHashValue(newHash)
+    setSearchValue(newHash)
 
     if (typeof window !== 'undefined') {
       window.history.replaceState(null, '', `#${newHash}`)
@@ -89,11 +103,14 @@ export default function ModeLayout({
           {filteredModes.map((mode) => {
             const { number, short, example, severity, stage, about, dateAdded, dateUpdated } = mode
             return (
-              <li key={"FailureMode" + number} className="py-4">
+              <li key={'FailureMode' + number} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <ul className="flex flex-col space-y-1 xl:col-span-1">
                     <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
-                      <Link href={`#failure mode ${number}`} className="text-gray-900 dark:text-gray-100">
+                      <Link
+                        href={`#failure mode ${number}`}
+                        className="text-gray-900 dark:text-gray-100"
+                      >
                         Failure Mode {number}
                       </Link>
                     </li>
@@ -104,17 +121,21 @@ export default function ModeLayout({
                       Benchmark Stage {mode.stage}
                     </li>
                     <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      Added <time dateTime={dateAdded}>{formatDate(dateAdded, siteMetadata.locale)}</time>
+                      Added{' '}
+                      <time dateTime={dateAdded}>{formatDate(dateAdded, siteMetadata.locale)}</time>
                     </li>
                     <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      Updated <time dateTime={dateUpdated}>{formatDate(dateUpdated, siteMetadata.locale)}</time>
+                      Updated{' '}
+                      <time dateTime={dateUpdated}>
+                        {formatDate(dateUpdated, siteMetadata.locale)}
+                      </time>
                     </li>
                   </ul>
                   <div className="space-y-3 xl:col-span-3">
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
                         {/* <Link href={`#todo`} className="text-gray-900 dark:text-gray-100"> */}
-                          {short}
+                        {short}
                         {/* </Link> */}
                       </h3>
                     </div>
