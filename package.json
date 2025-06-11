@@ -14,6 +14,8 @@
   "dependencies": {
     "@headlessui/react": "^1.7.19",
     "@next/bundle-analyzer": "14.2.3",
+    "@nivo/core": "^0.99.0",
+    "@nivo/heatmap": "^0.99.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.12",
     "autoprefixer": "^10.4.13",
