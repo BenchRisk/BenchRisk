@@ -37,7 +37,7 @@ function renderMitigations(mitigations, failureModeMap, mitigationMap) {
                   (mitigationNumber) => mitigationMap.get(mitigationNumber).mitigatedNumber === key
                 )
                 .map((mitigation) => (
-                  <li key={mitigation} className="mb-2">
+                  <li key={String(mitigation)} className="mb-2">
                     <Link
                       href={
                         '/mitigation#mitigation%20' +
@@ -47,7 +47,7 @@ function renderMitigations(mitigations, failureModeMap, mitigationMap) {
                       className="text-indigo-600 hover:text-indigo-500"
                     >
                       {mitigations.includes(mitigation) ? '✅ Mitigation ' : '❌ Mitigation '}{' '}
-                      {mitigation}
+                      {String(mitigation)}
                     </Link>
                     <br />
                     {mitigationMap.get(mitigation).questionStatement}
