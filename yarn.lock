@@ -3456,14 +3456,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/d3-scale-chromatic@npm:^3.0.0":
+"@types/d3-scale-chromatic@npm:^3, @types/d3-scale-chromatic@npm:^3.0.0":
   version: 3.1.0
   resolution: "@types/d3-scale-chromatic@npm:3.1.0"
   checksum: 10/6b04af931b7cd4aa09f21519970cab44aaae181faf076013ab93ccb0d550ec16f4c8d444c1e9dee1493be4261a8a8bb6f8e6356e6f4c6ba0650011b1e8a38aef
   languageName: node
   linkType: hard
 
-"@types/d3-scale@npm:^4.0.8":
+"@types/d3-scale@npm:^4, @types/d3-scale@npm:^4.0.8":
   version: 4.0.9
   resolution: "@types/d3-scale@npm:4.0.9"
   dependencies:
@@ -4994,7 +4994,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3-scale-chromatic@npm:^3.0.0":
+"d3-scale-chromatic@npm:^3.0.0, d3-scale-chromatic@npm:^3.1.0":
   version: 3.1.0
   resolution: "d3-scale-chromatic@npm:3.1.0"
   dependencies:
@@ -11498,6 +11498,8 @@ __metadata:
     "@svgr/webpack": "npm:^8.0.1"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@tailwindcss/typography": "npm:^0.5.12"
+    "@types/d3-scale": "npm:^4"
+    "@types/d3-scale-chromatic": "npm:^3"
     "@types/mdx": "npm:^2.0.12"
     "@types/react": "npm:^18.2.73"
     "@typescript-eslint/eslint-plugin": "npm:^6.1.0"
@@ -11505,6 +11507,8 @@ __metadata:
     autoprefixer: "npm:^10.4.13"
     contentlayer2: "npm:0.4.6"
     cross-env: "npm:^7.0.3"
+    d3-scale: "npm:^4.0.2"
+    d3-scale-chromatic: "npm:^3.1.0"
     esbuild: "npm:0.20.2"
     eslint: "npm:^8.45.0"
     eslint-config-next: "npm:14.2.3"

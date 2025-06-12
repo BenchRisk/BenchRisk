@@ -42,15 +42,21 @@ import {
   FaTv,
   FaRocket,
 } from 'react-icons/fa'
-import { FaGoogleScholar, FaLinkedinIn, FaSackDollar, FaBugSlash } from 'react-icons/fa6'
+import {
+  FaGoogleScholar,
+  FaLinkedinIn,
+  FaSackDollar,
+  FaBugSlash,
+  FaArrowsTurnToDots,
+} from 'react-icons/fa6'
 import { BsOctagonFill } from 'react-icons/bs'
-import { BiSolidCctv } from 'react-icons/bi'
+import { BiSolidCctv, BiSolidPieChart } from 'react-icons/bi'
 import { PiMapPinSimpleAreaLight, PiVideoConferenceLight } from 'react-icons/pi'
-import { GiSafetyPin } from 'react-icons/gi'
+import { GiSafetyPin, GiTimeBomb, GiRead } from 'react-icons/gi'
 import { SiSemanticscholar, SiArxiv } from 'react-icons/si'
 import { HiOutlinePresentationChartBar } from 'react-icons/hi'
 import { LuMousePointerClick } from 'react-icons/lu'
-import { MdOutlineOndemandVideo, MdClose } from 'react-icons/md'
+import { MdOutlineOndemandVideo, MdClose, MdOutlineScatterPlot } from 'react-icons/md'
 import { createElement } from 'react'
 
 const icons = {
@@ -110,6 +116,11 @@ const icons = {
   FaTv: FaTv,
   MdClose: MdClose,
   FaRocket: FaRocket,
+  GiTimeBomb: GiTimeBomb,
+  MdOutlineScatterPlot: MdOutlineScatterPlot,
+  FaArrowsTurnToDots: FaArrowsTurnToDots,
+  BiSolidPieChart: BiSolidPieChart,
+  GiRead: GiRead,
 }
 
 // Icons taken from: https://simpleicons.org/

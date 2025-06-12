@@ -12,6 +12,8 @@ export default function Page() {
     allMitigations.map((mitigation) => [mitigation.mitigationNumber, mitigation])
   )
 
+  const failureModeMap = new Map(allModes.map((mode) => [mode.number, mode]))
+
   // Find the total risk that may be mitigated
   const totalRisk = allModes.reduce((acc, mode) => {
     return acc + mode.severity
@@ -147,7 +149,11 @@ export default function Page() {
 
   return (
     <>
-      <ScoreLayout scores={sortedScores}></ScoreLayout>
+      <ScoreLayout
+        scores={sortedScores}
+        mitigationMap={mitigationMap}
+        failureModeMap={failureModeMap}
+      ></ScoreLayout>
     </>
   )
 }
