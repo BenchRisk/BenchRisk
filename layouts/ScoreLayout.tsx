@@ -3,13 +3,10 @@
 import { useState } from 'react'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
-import Link from '@/components/Link'
 import Drawer from '@/components/Drawer'
 import siteMetadata from '@/data/siteMetadata'
 import HeatMap from '@/components/charts/HeatMap'
 import { ReactIconInline } from 'components/Icons'
-import { scaleDiverging } from 'd3-scale'
-import { interpolateRdYlBu } from 'd3-scale-chromatic'
 
 function scoreBar(score, dimension, last = false) {
   return (
@@ -188,65 +185,6 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
     }
   }
 
-  function renderMitigations(mitigations) {
-    const colorScale = scaleDiverging(interpolateRdYlBu).domain([0, 50, 100])
-    const iconMap = new Map([
-      ['longevity', 'GiTimeBomb'],
-      ['correctness', 'FaArrowsTurnToDots'],
-      ['intelligibility', 'GiRead'],
-      ['comprehensiveness', 'BiSolidPieChart'],
-      ['consistency', 'MdOutlineScatterPlot'],
-    ])
-    return (
-      <ul className="space-y-4 pl-6">
-        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-          {Array.from(failureModeMap.keys())
-            .sort((keyA, keyB) => (keyA as number) - (keyB as number))
-            .filter((k) => failureModeMap.get(k).severity > 0)
-            .map((key) => (
-              <li key={String(key)} className="mb-4 list-none">
-                <ReactIconInline
-                  i={iconMap.get(failureModeMap.get(key).dimension.toLowerCase())}
-                  // color={colorScale(failureModeMap.get(key).severity * 100)}
-                  color={'blue'}
-                >
-                  {failureModeMap.get(key).dimension}
-                  {' failure mode '}
-                  {failureModeMap.get(key).number}
-                  {': '}
-                  {failureModeMap.get(key).short}
-                  <ul className="space-y-2 pl-4">
-                    {Array.from(mitigationMap.keys())
-                      .filter(
-                        (mitigationNumber) =>
-                          mitigationMap.get(mitigationNumber).mitigatedNumber === key
-                      )
-                      .map((mitigation) => (
-                        <li key={mitigation} className="mb-2">
-                          <Link
-                            href={
-                              '/mitigation#mitigation%20' +
-                              mitigationMap.get(mitigation).mitigationNumber +
-                              '%20'
-                            }
-                            className="text-indigo-600 hover:text-indigo-500"
-                          >
-                            {mitigations.includes(mitigation) ? '✅ Mitigation ' : '❌ Mitigation '}{' '}
-                            {mitigation}
-                          </Link>
-                          <br />
-                          {mitigationMap.get(mitigation).questionStatement}
-                        </li>
-                      ))}
-                  </ul>
-                </ReactIconInline>
-              </li>
-            ))}
-        </div>
-      </ul>
-    )
-  }
-
   const chartScores = filteredScores.map((score) => {
     return {
       id: score.name,
@@ -315,7 +253,6 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
             </div>
           </div>
           {filteredScores.map((score) => {
-            const rawData = renderMitigations(score.adoptedMitigations)
             const {
               name,
               minScore,
@@ -349,7 +286,13 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
                   <div className="space-y-3 xl:col-span-3">
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Drawer title={`Details for ${name}`} contents={rawData}></Drawer>
+                        <Drawer
+                          title={`Details for ${name}`}
+                          contents={''}
+                          mitigations={adoptedMitigations}
+                          failureModeMap={failureModeMap}
+                          mitigationMap={mitigationMap}
+                        ></Drawer>
                       </h3>
                       <div className="prose max-w-none text-gray-500 dark:text-gray-400">
                         {scoreFindings(
