@@ -204,7 +204,7 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
             .sort((keyA, keyB) => (keyA as number) - (keyB as number))
             .filter((k) => failureModeMap.get(k).severity > 0)
             .map((key) => (
-              <li key={key} className="mb-4 list-none">
+              <li key={String(key)} className="mb-4 list-none">
                 <ReactIconInline
                   i={iconMap.get(failureModeMap.get(key).dimension.toLowerCase())}
                   // color={colorScale(failureModeMap.get(key).severity * 100)}
