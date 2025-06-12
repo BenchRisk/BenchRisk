@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import Link from '@/components/Link'
@@ -10,6 +10,7 @@ export default function MitigationLayout({ mitigations }) {
   const [searchValue, setSearchValue] = useState('')
   const filteredMitigations = mitigations.filter((mitigation) => {
     const searchContent =
+      'mitigation ' +
       mitigation.mitigationNumber.toString() +
       ' ' +
       mitigation.mitigatedNumber.toString() +
@@ -24,7 +25,39 @@ export default function MitigationLayout({ mitigations }) {
       mitigation.likelihoodReductionPercent.toString()
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
-  const displayMitigations = filteredMitigations
+
+  const [hashValue, setHashValue] = useState('')
+
+  // Set input from current URL hash on mount
+  useEffect(() => {
+    const updateFromHash = () => {
+      const newHash = window.location.hash.slice(1)
+      setHashValue(newHash)
+      setSearchValue(decodeURIComponent(newHash))
+    }
+
+    if (typeof window !== 'undefined') {
+      const initialHash = window.location.hash.slice(1) // remove '#'
+      setHashValue(initialHash)
+      setSearchValue(decodeURIComponent(initialHash))
+      window.addEventListener('hashchange', updateFromHash)
+
+      return () => {
+        window.removeEventListener('hashchange', updateFromHash)
+      }
+    }
+  }, [])
+
+  // Update URL hash when input changes
+  const handleChange = (e) => {
+    const newHash = e.target.value
+    setHashValue(newHash)
+    setSearchValue(newHash)
+
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `#${newHash}`)
+    }
+  }
 
   return (
     <>
@@ -39,7 +72,8 @@ export default function MitigationLayout({ mitigations }) {
               <input
                 aria-label="Search Mitigations"
                 type="text"
-                onChange={(e) => setSearchValue(e.target.value)}
+                value={decodeURIComponent(hashValue)}
+                onChange={handleChange}
                 placeholder="Search mitigations"
                 className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
               />
@@ -62,7 +96,7 @@ export default function MitigationLayout({ mitigations }) {
         </div>
         <ul>
           {!filteredMitigations.length && 'No mitigations found.'}
-          {displayMitigations.map((mitigation) => {
+          {filteredMitigations.map((mitigation) => {
             const {
               mitigationNumber,
               mitigatedNumber,
@@ -103,9 +137,7 @@ export default function MitigationLayout({ mitigations }) {
                   <div className="space-y-3 xl:col-span-3">
                     <div>
                       <h3 className="text-xl font-bold leading-8 tracking-tight">
-                        <Link href={`#todo`} className="text-gray-900 dark:text-gray-100">
-                          {questionStatement}
-                        </Link>
+                        {questionStatement}
                       </h3>
                     </div>
                   </div>

@@ -108,7 +108,7 @@ export default function ModeLayout({ modes }) {
                   <ul className="flex flex-col space-y-1 xl:col-span-1">
                     <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
                       <Link
-                        href={`#failure mode ${number}`}
+                        href={'/mode#failure%20mode%20' + number + '%20'}
                         className="text-gray-900 dark:text-gray-100"
                       >
                         Failure Mode {number}

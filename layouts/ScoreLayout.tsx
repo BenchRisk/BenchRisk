@@ -202,6 +202,7 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
           {Array.from(failureModeMap.keys())
             .sort((keyA, keyB) => keyA - keyB)
+            .filter((k) => failureModeMap.get(k).severity > 0)
             .map((key) => (
               <li key={key} className="mb-4 list-none">
                 <ReactIconInline
@@ -223,7 +224,11 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
                       .map((mitigation) => (
                         <li key={mitigation} className="mb-2">
                           <Link
-                            href={`/mitigations/${mitigationMap.get(mitigation).mitigationNumber}`}
+                            href={
+                              '/mitigation#mitigation%20' +
+                              mitigationMap.get(mitigation).mitigationNumber +
+                              '%20'
+                            }
                             className="text-indigo-600 hover:text-indigo-500"
                           >
                             {mitigations.includes(mitigation) ? '✅ Mitigation ' : '❌ Mitigation '}{' '}
