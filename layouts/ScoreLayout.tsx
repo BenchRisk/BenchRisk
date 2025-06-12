@@ -201,7 +201,7 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
       <ul className="space-y-4 pl-6">
         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
           {Array.from(failureModeMap.keys())
-            .sort((keyA, keyB) => keyA - keyB)
+            .sort((keyA, keyB) => (keyA as number) - (keyB as number))
             .filter((k) => failureModeMap.get(k).severity > 0)
             .map((key) => (
               <li key={key} className="mb-4 list-none">
