@@ -56,7 +56,12 @@ import { GiSafetyPin, GiTimeBomb, GiRead } from 'react-icons/gi'
 import { SiSemanticscholar, SiArxiv } from 'react-icons/si'
 import { HiOutlinePresentationChartBar } from 'react-icons/hi'
 import { LuMousePointerClick } from 'react-icons/lu'
-import { MdOutlineOndemandVideo, MdClose, MdOutlineScatterPlot } from 'react-icons/md'
+import {
+  MdOutlineOndemandVideo,
+  MdClose,
+  MdOutlineScatterPlot,
+  MdOutlineZoomIn,
+} from 'react-icons/md'
 import { createElement } from 'react'
 
 const icons = {
@@ -121,6 +126,7 @@ const icons = {
   FaArrowsTurnToDots: FaArrowsTurnToDots,
   BiSolidPieChart: BiSolidPieChart,
   GiRead: GiRead,
+  MdOutlineZoomIn: MdOutlineZoomIn,
 }
 
 // Icons taken from: https://simpleicons.org/
