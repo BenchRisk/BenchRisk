@@ -48,12 +48,14 @@ import {
   FaSackDollar,
   FaBugSlash,
   FaArrowsTurnToDots,
+  FaBook,
+  FaPlusMinus,
 } from 'react-icons/fa6'
 import { BsOctagonFill } from 'react-icons/bs'
 import { BiSolidCctv, BiSolidPieChart } from 'react-icons/bi'
 import { PiMapPinSimpleAreaLight, PiVideoConferenceLight } from 'react-icons/pi'
-import { GiSafetyPin, GiTimeBomb, GiRead } from 'react-icons/gi'
-import { SiSemanticscholar, SiArxiv } from 'react-icons/si'
+import { GiSafetyPin, GiTimeBomb, GiRead, GiParkBench } from 'react-icons/gi'
+import { SiSemanticscholar, SiArxiv, SiBlockbench } from 'react-icons/si'
 import { HiOutlinePresentationChartBar } from 'react-icons/hi'
 import { LuMousePointerClick } from 'react-icons/lu'
 import {
@@ -127,6 +129,10 @@ const icons = {
   BiSolidPieChart: BiSolidPieChart,
   GiRead: GiRead,
   MdOutlineZoomIn: MdOutlineZoomIn,
+  SiBlockbench: SiBlockbench,
+  GiParkBench: GiParkBench,
+  FaBook: FaBook,
+  FaPlusMinus: FaPlusMinus,
 }
 
 // Icons taken from: https://simpleicons.org/

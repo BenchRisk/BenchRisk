@@ -142,6 +142,19 @@ export default function MitigationLayout({ mitigations }) {
                           Failure Mode {mitigatedNumber}
                         </Link>
                       </li>
+                      <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
+                        risking{' '}
+                        <Link
+                          href={
+                            '/mode#' +
+                            encodeURIComponent(failureModeMap.get(mitigatedNumber)?.stage || '') +
+                            '%20'
+                          }
+                          className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        >
+                          {failureModeMap.get(mitigatedNumber)?.stage}
+                        </Link>
+                      </li>
                       <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                         Severity Reduction {severityReductionPercent.toString()}
                       </li>

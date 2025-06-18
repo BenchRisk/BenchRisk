@@ -63,6 +63,16 @@ export default function ModeLayout({ modes }) {
     }
   }
 
+  // Update URL hash when a link is clicked
+  const handleClick = (newHash) => {
+    setHashValue(decodeURIComponent(newHash))
+    setSearchValue(decodeURIComponent(newHash))
+
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `#${newHash}`)
+    }
+  }
+
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -110,6 +120,7 @@ export default function ModeLayout({ modes }) {
                       <Link
                         href={'/mode#failure%20mode%20' + number + '%20'}
                         className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        onClick={() => handleClick('failure%20mode%20' + number + '%20')}
                       >
                         {mode.dimension} Failure Mode {number}
                       </Link>
