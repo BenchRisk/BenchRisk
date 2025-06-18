@@ -1,0 +1,212 @@
+---
+name: New Benchmark Score
+about: Submit a new benchmark score
+title: New Benchmark NAME
+labels: Benchmark
+assignees: smcgregor
+---
+
+_Update the list of mitigation numbers in the document format below. All mitigations listed under adoptedMitigations must be adopted and implemented whileall those mitigations that are not presently implemented must be listed under absentMitigations._
+
+_Reach out by opening this issue if you want help!_
+
+```
+---
+name: YourBenchmarkNameHere
+adoptedMitigations:
+- 1
+- 106
+- 64
+- 89
+- 140
+- 101
+- 141
+- 102
+- 10
+- 12
+- 13
+- 14
+- 19
+- 21
+- 92
+- 27
+- 53
+- 33
+- 36
+- 160
+- 38
+- 88
+- 82
+- 83
+- 57
+- 42
+- 104
+- 105
+- 103
+- 107
+- 120
+- 128
+- 129
+- 130
+- 131
+- 132
+- 125
+- 126
+- 133
+absentMitigations:
+- 186
+- 198
+- 162
+- 68
+- 187
+- 188
+- 189
+- 190
+- 191
+- 192
+- 2
+- 3
+- 4
+- 163
+- 70
+- 199
+- 5
+- 6
+- 8
+- 7
+- 9
+- 62
+- 11
+- 164
+- 69
+- 142
+- 165
+- 178
+- 84
+- 86
+- 183
+- 184
+- 85
+- 87
+- 90
+- 65
+- 71
+- 144
+- 17
+- 193
+- 143
+- 80
+- 145
+- 18
+- 201
+- 79
+- 146
+- 180
+- 179
+- 147
+- 166
+- 194
+- 134
+- 22
+- 195
+- 148
+- 181
+- 23
+- 185
+- 63
+- 24
+- 25
+- 72
+- 26
+- 91
+- 149
+- 150
+- 151
+- 73
+- 28
+- 93
+- 46
+- 81
+- 196
+- 152
+- 29
+- 94
+- 47
+- 48
+- 153
+- 182
+- 135
+- 137
+- 30
+- 49
+- 154
+- 95
+- 31
+- 32
+- 50
+- 96
+- 97
+- 155
+- 54
+- 202
+- 98
+- 156
+- 55
+- 99
+- 58
+- 138
+- 60
+- 157
+- 100
+- 59
+- 139
+- 61
+- 158
+- 34
+- 51
+- 159
+- 200
+- 35
+- 56
+- 37
+- 75
+- 197
+- 122
+- 123
+- 66
+- 127
+- 76
+- 39
+- 77
+- 78
+- 44
+- 74
+- 43
+- 45
+- 161
+- 52
+- 67
+- 108
+- 109
+- 112
+- 113
+- 114
+- 118
+- 110
+- 115
+- 116
+- 117
+- 119
+- 111
+- 121
+- 124
+- 136
+benchmarkDescription: Replace this text with a sentence describing the purpose of the benchmark
+dateScored: '2025-04-01'
+reference: Replace this text with any documentation you would like to see stated on BenchRisk.ai alongside its BenchRisk scores
+---
+
+## Notes, References, and Justifications
+
+_Add optional information here._
+```
