@@ -33,7 +33,7 @@ function renderMitigations(mitigations, failureModeMap, mitigationMap) {
             </Link>
             {': '}
             {failureModeMap.get(key).short}
-            <li className="space-y-2 pl-4">
+            <ul className="space-y-2 pl-4">
               {Array.from(mitigationMap.keys())
                 .filter(
                   (mitigationNumber) => mitigationMap.get(mitigationNumber).mitigatedNumber === key
@@ -54,7 +54,7 @@ function renderMitigations(mitigations, failureModeMap, mitigationMap) {
                     {mitigationMap.get(mitigation).questionStatement}
                   </li>
                 ))}
-            </li>
+            </ul>
           </li>
         ))}
     </ul>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import Drawer from '@/components/Drawer'
@@ -53,109 +53,114 @@ function scoreFindings(
   const highThreshold = 0.7
   const lowThreshold = 0.5
 
-  let color =
-    consistencyScore >= highThreshold ? 'gray' : consistencyScore >= lowThreshold ? 'yellow' : 'red'
-  const intelligibilityStatement = (
-    <>
-      <span
-        className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}
-      >
-        {intelligibilityScore >= highThreshold
-          ? 'lower'
-          : intelligibilityScore >= lowThreshold
-            ? 'moderate'
-            : 'high'}{' '}
-        risk of misunderstanding
-      </span>{' '}
-      what the benchmark evidences.
-    </>
-  )
-
-  color =
-    consistencyScore >= highThreshold ? 'gray' : consistencyScore >= lowThreshold ? 'yellow' : 'red'
-  const consistencyStatement = (
-    <>
-      <span
-        className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}
-      >
-        {consistencyScore >= highThreshold
-          ? 'lower'
-          : consistencyScore >= lowThreshold
-            ? 'moderate'
-            : 'high'}{' '}
-        risk of randomness misleading
-      </span>{' '}
-      via scores not representative of the system.
-    </>
-  )
-
-  color =
-    comprehensivenessScore >= highThreshold
-      ? 'gray'
-      : comprehensivenessScore >= lowThreshold
-        ? 'yellow'
-        : 'red'
-  const comprehensivenessStatement = (
-    <>
-      <span
-        className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}
-      >
-        {comprehensivenessScore >= highThreshold
-          ? 'lower'
-          : comprehensivenessScore >= lowThreshold
-            ? 'moderate'
-            : 'high'}{' '}
-        risk of circumstance not being covered
-      </span>{' '}
-      when the benchmark may reasonably be expected to cover the circumstance.
-    </>
-  )
-
-  color =
-    correctnessScore >= highThreshold ? 'gray' : correctnessScore >= lowThreshold ? 'yellow' : 'red'
-  const correctnessStatement = (
-    <>
-      <span
-        className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}
-      >
-        {correctnessScore >= highThreshold
-          ? 'lower'
-          : correctnessScore >= lowThreshold
-            ? 'moderate'
-            : 'high'}{' '}
-        risk of statistically biased
-      </span>{' '}
-      results misleading.
-    </>
-  )
-
-  color =
-    longevityScore >= highThreshold ? 'gray' : longevityScore >= lowThreshold ? 'yellow' : 'red'
-  const longevityStatement = (
-    <>
-      <span
-        className={`inline-flex items-center rounded-md bg-${color}-400/10 px-2 py-1 text-xs font-medium text-${color}-400 ring-1 ring-${color}-400/20 ring-inset`}
-      >
-        {longevityScore >= highThreshold
-          ? 'lower'
-          : longevityScore >= lowThreshold
-            ? 'moderate'
-            : 'high'}{' '}
-        risk of information degrading
-      </span>{' '}
-      through time.
-    </>
-  )
+  const lowClasses = 'text-white-400 ring-red-800 bg-red-400/20 '
+  const medClasses = 'text-yellow-400 ring-yellow-400 bg-yellow-400/20 '
+  const highClasses = 'text-gray-400 ring-gray-400 '
 
   return (
     <>
       People relying on this benchmark for real world decision making are at a...
       <ul>
-        <li>{longevityStatement}</li>
-        <li>{correctnessStatement}</li>
-        <li>{intelligibilityStatement}</li>
-        <li>{comprehensivenessStatement}</li>
-        <li>{consistencyStatement}</li>
+        <li>
+          <span
+            className={
+              `inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset` +
+              (longevityScore >= highThreshold
+                ? highClasses
+                : longevityScore >= lowThreshold
+                  ? medClasses
+                  : lowClasses)
+            }
+          >
+            {longevityScore >= highThreshold
+              ? 'lower'
+              : longevityScore >= lowThreshold
+                ? 'moderate'
+                : 'high'}{' '}
+            risk of information degrading
+          </span>{' '}
+          through time.
+        </li>
+        <li>
+          <span
+            className={
+              `inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset` +
+              (correctnessScore >= highThreshold
+                ? highClasses
+                : correctnessScore >= lowThreshold
+                  ? medClasses
+                  : lowClasses)
+            }
+          >
+            {correctnessScore >= highThreshold
+              ? 'lower'
+              : correctnessScore >= lowThreshold
+                ? 'moderate'
+                : 'high'}{' '}
+            risk of statistically biased
+          </span>{' '}
+          results misleading.
+        </li>
+        <li>
+          <span
+            className={
+              `inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset` +
+              (intelligibilityScore >= highThreshold
+                ? highClasses
+                : intelligibilityScore >= lowThreshold
+                  ? medClasses
+                  : lowClasses)
+            }
+          >
+            {intelligibilityScore >= highThreshold
+              ? 'lower'
+              : intelligibilityScore >= lowThreshold
+                ? 'moderate'
+                : 'high'}{' '}
+            risk of misunderstanding
+          </span>{' '}
+          what the benchmark evidences.
+        </li>
+        <li>
+          <span
+            className={
+              `inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset` +
+              (comprehensivenessScore >= highThreshold
+                ? highClasses
+                : comprehensivenessScore >= lowThreshold
+                  ? medClasses
+                  : lowClasses)
+            }
+          >
+            {comprehensivenessScore >= highThreshold
+              ? 'lower'
+              : comprehensivenessScore >= lowThreshold
+                ? 'moderate'
+                : 'high'}{' '}
+            risk of circumstance not being covered
+          </span>{' '}
+          when the benchmark may reasonably be expected to cover the circumstance.
+        </li>
+        <li>
+          <span
+            className={
+              `inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset` +
+              (consistencyScore >= highThreshold
+                ? highClasses
+                : consistencyScore >= lowThreshold
+                  ? medClasses
+                  : lowClasses)
+            }
+          >
+            {consistencyScore >= highThreshold
+              ? 'lower'
+              : consistencyScore >= lowThreshold
+                ? 'moderate'
+                : 'high'}{' '}
+            risk of randomness misleading
+          </span>{' '}
+          via scores not representative of the system.
+        </li>
       </ul>
     </>
   )
@@ -175,13 +180,36 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 
-  function renderObject(obj) {
-    if (typeof obj == 'number') {
-      return obj.toString()
-    } else if (typeof obj == 'string') {
-      return obj
-    } else if (Array.isArray(obj)) {
-      return obj.map((item) => renderObject(item)).join(', ')
+  const [hashValue, setHashValue] = useState('')
+
+  // Set input from current URL hash on mount
+  useEffect(() => {
+    const updateFromHash = () => {
+      const newHash = window.location.hash.slice(1)
+      setHashValue(newHash)
+      setSearchValue(decodeURIComponent(newHash))
+    }
+
+    if (typeof window !== 'undefined') {
+      const initialHash = window.location.hash.slice(1) // remove '#'
+      setHashValue(initialHash)
+      setSearchValue(decodeURIComponent(initialHash))
+      window.addEventListener('hashchange', updateFromHash)
+
+      return () => {
+        window.removeEventListener('hashchange', updateFromHash)
+      }
+    }
+  }, [])
+
+  // Update URL hash when input changes
+  const handleChange = (e) => {
+    const newHash = e.target.value
+    setHashValue(newHash)
+    setSearchValue(newHash)
+
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `#${newHash}`)
     }
   }
 
@@ -204,7 +232,7 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          Scores
+          BenchRisk Scores
         </h1>
         <ul>
           {!filteredScores.length && 'No scores found.'}
@@ -231,7 +259,8 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
                 <input
                   aria-label="Filter Scores"
                   type="text"
-                  onChange={(e) => setSearchValue(e.target.value)}
+                  value={decodeURIComponent(hashValue)}
+                  onChange={handleChange}
                   placeholder="Filter scores"
                   className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
                 />

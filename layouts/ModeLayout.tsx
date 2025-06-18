@@ -109,13 +109,13 @@ export default function ModeLayout({ modes }) {
                     <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
                       <Link
                         href={'/mode#failure%20mode%20' + number + '%20'}
-                        className="text-gray-900 dark:text-gray-100"
+                        className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                       >
-                        Failure Mode {number}
+                        {mode.dimension} Failure Mode {number}
                       </Link>
                     </li>
                     <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      {mode.dimension} Severity {mode.severity.toString()}
+                      Severity {mode.severity.toString()}
                     </li>
                     <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                       Benchmark Stage {mode.stage}

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { allScores, allModes } from 'contentlayer/generated'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import Link from '@/components/Link'
@@ -59,6 +60,18 @@ export default function MitigationLayout({ mitigations }) {
     }
   }
 
+  // Update URL hash when a link is clicked
+  const handleClick = (newHash) => {
+    setHashValue(decodeURIComponent(newHash))
+    setSearchValue(decodeURIComponent(newHash))
+
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `#${newHash}`)
+    }
+  }
+
+  const failureModeMap = new Map(allModes.map((mode) => [mode.number, mode]))
+
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -112,11 +125,20 @@ export default function MitigationLayout({ mitigations }) {
                   <dl>
                     <ul className="flex flex-col space-y-1 xl:col-span-1">
                       <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
-                        Mitigation {mitigationNumber}
+                        <Link
+                          href={'/mitigation#mitigation%20' + mitigationNumber + '%20'}
+                          className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                          onClick={() => handleClick('mitigation%20' + mitigationNumber + '%20')}
+                        >
+                          Mitigation {mitigationNumber}
+                        </Link>
                       </li>
                       <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
                         for{' '}
-                        <Link href={'/mode#failure%20mode%20' + mitigatedNumber + '%20'}>
+                        <Link
+                          href={'/mode#failure%20mode%20' + mitigatedNumber + '%20'}
+                          className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        >
                           Failure Mode {mitigatedNumber}
                         </Link>
                       </li>
@@ -135,11 +157,30 @@ export default function MitigationLayout({ mitigations }) {
                     </ul>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
-                    <div>
-                      <h3 className="text-xl font-bold leading-8 tracking-tight">
-                        {questionStatement}
-                      </h3>
+                    <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      {questionStatement}
                     </div>
+                    <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      This mitigates the {failureModeMap.get(mitigatedNumber)?.dimension} Failure
+                      Mode:{' '}
+                      <span className="italic">{failureModeMap.get(mitigatedNumber)?.short}</span>
+                    </div>
+                    <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      Affirming Benchmarks:{' '}
+                    </div>
+
+                    {allScores.map((score) => {
+                      if (score.adoptedMitigations?.includes(mitigationNumber)) return ''
+                      return (
+                        <Link
+                          key={mitigationNumber.toString() + score.name}
+                          href={'/score#' + encodeURIComponent(score.name)}
+                          className="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset"
+                        >
+                          {score.name}
+                        </Link>
+                      )
+                    })}
                   </div>
                 </article>
               </li>
