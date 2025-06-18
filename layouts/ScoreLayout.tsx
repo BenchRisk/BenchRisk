@@ -19,7 +19,7 @@ function scoreBar(score, dimension, last = false) {
           />
         </div>
         {last ? (
-          <div className="mt-6 hidden grid-cols-1 text-sm font-medium text-gray-600 sm:grid">
+          <div className="mt-6 grid-cols-1 text-sm font-medium text-gray-600 sm:grid">
             {/* <div className="text-indigo-600">Known Unreliable</div> */}
             <div className="text-center">
               <span className="text-indigo-600">{Math.round(score * 100)}</span> percent of known
@@ -29,7 +29,7 @@ function scoreBar(score, dimension, last = false) {
             {/* <div className="text-right text-indigo-600">All Known Risks Mitigated</div> */}
           </div>
         ) : (
-          <div className="mt-6 hidden grid-cols-1 text-sm font-medium text-gray-600 sm:grid">
+          <div className="mt-6 grid-cols-1 text-sm font-medium text-gray-600 sm:grid">
             <div className="text-center">
               <span className="text-indigo-600">{Math.round(score * 100)}</span> percent of known
               <span className="text-indigo-600"> {dimension} </span>
@@ -213,6 +213,16 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
     }
   }
 
+  // Update URL hash when a link is clicked
+  const handleClick = (newHash) => {
+    setHashValue(decodeURIComponent(newHash))
+    setSearchValue(decodeURIComponent(newHash))
+
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `#${newHash}`)
+    }
+  }
+
   const chartScores = filteredScores.map((score) => {
     return {
       id: score.name,
@@ -255,30 +265,26 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
           <div className="space-y-2 pb-8 pt-6 md:space-y-5">
             <div className="relative max-w-lg">
               <label>
-                <span className="sr-only">Search articles</span>
-                <input
-                  aria-label="Filter Scores"
-                  type="text"
-                  value={decodeURIComponent(hashValue)}
-                  onChange={handleChange}
-                  placeholder="Filter scores"
-                  className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
-                />
+                <span className="sr-only">Search scores</span>
+
+                <div className="flex items-center space-x-2">
+                  <input
+                    aria-label="Filter Scores"
+                    type="text"
+                    value={decodeURIComponent(hashValue)}
+                    onChange={handleChange}
+                    placeholder="Filter scores"
+                    className="block w-96 rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                  />
+                  <button
+                    type="button"
+                    className="shadow-xs rounded-sm bg-white/10 px-2 py-1 text-sm font-semibold text-white hover:bg-white/20"
+                    onClick={() => handleClick('')}
+                  >
+                    X Clear Filter
+                  </button>
+                </div>
               </label>
-              <svg
-                className="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
             </div>
           </div>
           {filteredScores.map((score) => {
@@ -295,7 +301,7 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
             } = score
             return (
               <li key={'Score' + name} className="py-4">
-                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                <article className="grid grid-cols-4 items-baseline space-y-0 space-y-2">
                   <dl>
                     <dt className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                       Scored on
@@ -312,7 +318,7 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
                       minimum score of {Math.round(minScore * 100)}
                     </dt>
                   </dl>
-                  <div className="space-y-3 xl:col-span-3">
+                  <div className="col-span-3 space-y-3">
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
                         <Drawer

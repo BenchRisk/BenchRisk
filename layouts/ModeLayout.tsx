@@ -18,7 +18,7 @@ export default function ModeLayout({ modes }) {
       mode.example +
       ' ' +
       mode.severity.toString() +
-      ' ' +
+      ' benchmark stage ' +
       mode.stage +
       ' ' +
       mode.about +
@@ -82,30 +82,26 @@ export default function ModeLayout({ modes }) {
           </h1>
           <div className="relative max-w-lg">
             <label>
-              <span className="sr-only">Search articles</span>
-              <input
-                aria-label="Search Failure Modes"
-                type="text"
-                value={decodeURIComponent(hashValue)}
-                onChange={handleChange}
-                placeholder="Search failure modes"
-                className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
-              />
+              <span className="sr-only">Search failure modes</span>
+
+              <div className="flex items-center space-x-2">
+                <input
+                  aria-label="Filter Failure Modes"
+                  type="text"
+                  value={decodeURIComponent(hashValue)}
+                  onChange={handleChange}
+                  placeholder="Filter scores"
+                  className="block w-96 rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                />
+                <button
+                  type="button"
+                  className="shadow-xs rounded-sm bg-white/10 px-2 py-1 text-sm font-semibold text-white hover:bg-white/20"
+                  onClick={() => handleClick('')}
+                >
+                  X Clear Filter
+                </button>
+              </div>
             </label>
-            <svg
-              className="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
           </div>
         </div>
         <ul>
@@ -114,8 +110,8 @@ export default function ModeLayout({ modes }) {
             const { number, short, example, severity, stage, about, dateAdded, dateUpdated } = mode
             return (
               <li key={'FailureMode' + number} className="py-4">
-                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                  <ul className="flex flex-col space-y-1 xl:col-span-1">
+                <article className="grid grid-cols-4 items-baseline space-y-0 space-y-2">
+                  <ul className="col-span-1 flex flex-col space-y-1">
                     <li className="text-base font-medium leading-6 text-gray-900 dark:text-gray-100">
                       <Link
                         href={'/mode#failure%20mode%20' + number + '%20'}
@@ -129,7 +125,13 @@ export default function ModeLayout({ modes }) {
                       Severity {mode.severity.toString()}
                     </li>
                     <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      Benchmark Stage {mode.stage}
+                      <Link
+                        href={'/mode#Benchmark%20stage%20' + mode.stage + '%20'}
+                        className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        onClick={() => handleClick('Benchmark%20stage%20' + mode.stage + '%20')}
+                      >
+                        Benchmark Stage {mode.stage}
+                      </Link>
                     </li>
                     <li className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                       Added{' '}
@@ -142,7 +144,7 @@ export default function ModeLayout({ modes }) {
                       </time>
                     </li>
                   </ul>
-                  <div className="space-y-3 xl:col-span-3">
+                  <div className="col-span-3 space-y-3">
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
                         {/* <Link href={`#todo`} className="text-gray-900 dark:text-gray-100"> */}
