@@ -6,6 +6,7 @@ import { CoreContent } from 'pliny/utils/contentlayer'
 import Drawer from '@/components/Drawer'
 import siteMetadata from '@/data/siteMetadata'
 import HeatMap from '@/components/charts/HeatMap'
+import Link from '@/components/Link'
 import { ReactIconInline } from 'components/Icons'
 
 function scoreBar(score, dimension, last = false) {
@@ -48,7 +49,9 @@ function scoreFindings(
   consistencyScore,
   comprehensivenessScore,
   correctnessScore,
-  longevityScore
+  longevityScore,
+  benchmarkDescription,
+  reference
 ) {
   const highThreshold = 0.7
   const lowThreshold = 0.5
@@ -59,7 +62,18 @@ function scoreFindings(
 
   return (
     <>
-      People relying on this benchmark for real world decision making are at a...
+      <span className="italic">{benchmarkDescription}</span>
+      <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+        Refer to the original reference for{' '}
+        <Link
+          href={reference.raw}
+          className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+        >
+          more details about the benchmark
+        </Link>
+      </div>
+      <br />
+      The benchmark presents a...
       <ul>
         <li>
           <span
@@ -177,6 +191,7 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
       score.reference +
       ' ' +
       score.dateScored.toString()
+    if (score.hide) return false // Skip hidden scores
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 
@@ -298,6 +313,8 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
               comprehensivenessScore,
               correctnessScore,
               longevityScore,
+              benchmarkDescription,
+              reference,
             } = score
             return (
               <li key={'Score' + name} className="py-4">
@@ -322,7 +339,7 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
                         <Drawer
-                          title={`Details for ${name}`}
+                          title={`${name}`}
                           contents={''}
                           mitigations={adoptedMitigations}
                           failureModeMap={failureModeMap}
@@ -335,7 +352,9 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
                           consistencyScore,
                           comprehensivenessScore,
                           correctnessScore,
-                          longevityScore
+                          longevityScore,
+                          benchmarkDescription,
+                          reference
                         )}
                         Numerically, this is supported by the following scores:
                       </div>

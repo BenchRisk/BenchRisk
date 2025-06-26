@@ -203,6 +203,7 @@ export const Scores = defineDocumentType(() => ({
     benchmarkDescription: { type: 'string', required: true },
     reference: { type: 'markdown', required: true },
     dateScored: { type: 'date', required: true },
+    hide: { type: 'boolean', required: false, default: false },
   },
   computedFields,
 }))
