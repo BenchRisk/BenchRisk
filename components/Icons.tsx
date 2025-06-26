@@ -63,6 +63,7 @@ import {
   MdClose,
   MdOutlineScatterPlot,
   MdOutlineZoomIn,
+  MdClear,
 } from 'react-icons/md'
 import { createElement } from 'react'
 
@@ -133,6 +134,7 @@ const icons = {
   GiParkBench: GiParkBench,
   FaBook: FaBook,
   FaPlusMinus: FaPlusMinus,
+  MdClear: MdClear,
 }
 
 // Icons taken from: https://simpleicons.org/
