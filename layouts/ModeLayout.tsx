@@ -90,7 +90,7 @@ export default function ModeLayout({ modes }) {
                   type="text"
                   value={decodeURIComponent(hashValue)}
                   onChange={handleChange}
-                  placeholder="Filter scores"
+                  placeholder="Filter by description text"
                   className="block w-96 rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
                 />
                 <button

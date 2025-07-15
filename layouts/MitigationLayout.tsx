@@ -19,11 +19,19 @@ export default function MitigationLayout({ mitigations }) {
       mitigation.dateAdded.toString() +
       ' ' +
       mitigation.dateUpdated.toString() +
+      ' ' +
       mitigation.questionStatement +
       ' ' +
       mitigation.severityReductionPercent.toString() +
       ' ' +
-      mitigation.likelihoodReductionPercent.toString()
+      mitigation.likelihoodReductionPercent.toString() +
+      ' ' +
+      allScores
+        .filter((score) => {
+          return score.adoptedMitigations?.includes(mitigation.mitigationNumber)
+        })
+        .map((score) => score.name)
+        .join(' ')
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 
@@ -89,7 +97,7 @@ export default function MitigationLayout({ mitigations }) {
                   type="text"
                   value={decodeURIComponent(hashValue)}
                   onChange={handleChange}
-                  placeholder="Filter scores"
+                  placeholder="Filter mitigations by description"
                   className="block w-96 rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
                 />
                 <button
@@ -186,7 +194,10 @@ export default function MitigationLayout({ mitigations }) {
                     </div>
                     <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                       This mitigates{' '}
-                      <Link href={'/mode#failure%20mode%20' + mitigatedNumber + '%20'}>
+                      <Link
+                        href={'/mode#failure%20mode%20' + mitigatedNumber + '%20'}
+                        className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                      >
                         Failure Mode {mitigatedNumber}
                       </Link>
                       : <span className="italic">{failureModeMap.get(mitigatedNumber)?.short}</span>
