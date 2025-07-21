@@ -36,11 +36,11 @@ export default function HeadlineLayout({ children, content }: Props) {
               <SocialIcon kind="twitter" href={twitter} />
             </div>
           </div> */}
-          <div className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
+          <div className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-3">
             <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-              Status
+              Welcome
             </h1>
-            <div dangerouslySetInnerHTML={{ __html: status?.html }} />
+            <div>{status?.raw}</div>
             <Link href={`/about`} className="text-gray-900 dark:text-gray-100">
               Learn more about this work
             </Link>
