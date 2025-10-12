@@ -20,13 +20,8 @@ export default function HeadlineLayout({ children, content }: Props) {
               Welcome
             </h1>
             <div>{status?.raw}</div>
-<Link href={`/score`} className="text-gray-900 dark:text-gray-100">
-              <Image
-                src={"/static/images/scores.png"}
-                alt="avatar"
-                width={600}
-                height={363}
-              />
+            <Link href={`/score`} className="text-gray-900 dark:text-gray-100">
+              <Image src={'/static/images/scores.png'} alt="avatar" width={600} height={363} />
             </Link>
 
             <Link href={`/about`} className="text-gray-900 dark:text-gray-100">

@@ -271,7 +271,11 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
               <div className="space-y-3 xl:col-span-3">
                 <div>
                   <h3 className="text-2xl font-bold leading-8 tracking-tight">Score Details</h3>
-                  <p>These scores are all scoped around benchmarks intended to score information-only chatbots. Agentic systems (i.e., those taking direct action) are not in scope for this release versioned as BenchRisk-ChatBot-v1.0.</p>
+                  <p>
+                    These scores are all scoped around benchmarks intended to score information-only
+                    chatbots. Agentic systems (i.e., those taking direct action) are not in scope
+                    for this release versioned as BenchRisk-ChatBot-v1.0.
+                  </p>
                 </div>
               </div>
             </>
