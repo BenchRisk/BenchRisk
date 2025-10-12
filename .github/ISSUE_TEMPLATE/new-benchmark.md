@@ -6,7 +6,7 @@ labels: Benchmark
 assignees: smcgregor
 ---
 
-_Update the list of mitigation numbers in the document format below. All mitigations listed under adoptedMitigations must be adopted and implemented whileall those mitigations that are not presently implemented must be listed under absentMitigations._
+_Update the list of mitigation numbers in the document format below. All mitigations listed under adoptedMitigations must be adopted and implemented while all those mitigations that are not presently implemented must be listed under absentMitigations._
 
 _Reach out by opening this issue if you want help!_
 
