@@ -2,12 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { formatDate } from 'pliny/utils/formatDate'
-import { CoreContent } from 'pliny/utils/contentlayer'
 import Drawer from '@/components/Drawer'
 import siteMetadata from '@/data/siteMetadata'
 import HeatMap from '@/components/charts/HeatMap'
 import Link from '@/components/Link'
-import { ReactIconInline } from 'components/Icons'
 
 function scoreBar(score, dimension, last = false) {
   return (

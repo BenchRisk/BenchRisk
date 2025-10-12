@@ -1,7 +1,5 @@
 import { allMitigations, allScores, allModes } from 'contentlayer/generated'
-import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import ScoreLayout from '@/layouts/ScoreLayout'
-import { coreContent } from 'pliny/utils/contentlayer'
 import { genPageMetadata } from 'app/seo'
 
 export const metadata = genPageMetadata({ title: 'Scores' })
