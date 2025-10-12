@@ -80,6 +80,7 @@ export default function ModeLayout({ modes }) {
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Failure Modes
           </h1>
+          <p>These failure modes are all scoped around benchmarks intended to score information-only chatbots. Agentic systems (i.e., those taking direct action) are not in scope for this release versioned as BenchRisk-ChatBot-v1.0.</p>
           <div className="relative max-w-lg">
             <label>
               <span className="sr-only">Search failure modes</span>
