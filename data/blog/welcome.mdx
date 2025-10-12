@@ -1,22 +1,69 @@
 ---
-title: BenchRisk Soft Launch
-date: 2025-07-22 13:00
-tags: ['Machine Learning', 'Testing', 'BenchRisk']
+title: BenchRisk-ChatBot-v1.0
+date: 2025-10-22 13:00
+tags: ['LLM', 'Testing', 'BenchRisk', 'Evaluation', 'Metaevaluation', 'Safety']
 icon: FaRocket
+summary: Announcing the Release of BenchRisk-ChatBot-v1.0 for evaluating the reliability of ChatBot benchmarks published to evidence real world decisions.
 ---
 
-The BenchRisk.ai website is currently available as a limited preview pending peer review of the associated paper. You are encouraged to reach out to one of the authors of the work for a copy of the paper to help contextualize the BenchRisk process and findings.
+## Why?
 
-## Authors
+> In short, A.I. measurement is a mess — a tangle of sloppy tests, apples-to-oranges comparisons and self-serving hype that has left users, regulators and A.I. developers themselves grasping in the dark.
 
-- Sean McGregor, Responsible AI Collaborative, benchrisk@seanbmcgregor.com
-- Victor Lu, Independent
-- Vassil Tashev, Independent
-- Armstrong Foundjem, Polytechnique Montreal
-- Aishwarya Ramasethu, Prediction Guard
-- Mahdi Kazemi, University of Houston
-- Chris Knotz, Independent
-- Kongtao Chen, Google
-- Alicia Parrish, Google Deepmind
-- Anka Reuel, Stanford University
-- Heather Frase, Veraitech and Responsible AI Collaborative
+-- Kevin Roose, [reporting for the NY Times](https://www.nytimes.com/2024/04/15/technology/ai-models-measurement.html)
+
+We agree with Mr. Roose, and we need to fix this because **_reliable AI systems are not possible without reliable AI measurement._**
+
+## What are we doing about it?
+
+Following the aphorism, "You can't improve what you don't measure," fixing evaluations requires stronger techniques of "metaevaluation" -- the practice of evaluating evaluations. This site presents the results of a metaevaluation of large language model (LLM) benchmarks to aid in improving those benchmarks.
+
+"Benchmarks" are a common means by which AI systems are produced and assessed for their real world capacities and hazards. We produced a metaevaluation tool, methodology, and results to assess the risk associated with relying on benchmarks for real world decisions of consequence. We named this tool suite "BenchRisk."
+
+## What is BenchRisk?
+
+BenchRisk assesses benchmark reliability via a colleciton of [failure modes](/mode) that may lead to false conclusions about a benchmarked system. BenchRisk points are earned by benchmarks that affirm the adoption of [mitigations](/mitigation) reducing the risk (i.e., likelihood or severity) of a failure mode. Since mitigations and failure modes are specific to the type of system being benchmarked, we initially focused exclusively on benchmarks centered on information-only chatbots (i.e., the benchmarked systems do not take actions independent of their users).
+
+BenchRisk provides a means of...
+
+1. identifying which benchmarks are more reliable for real-world decisions
+2. identifying open benchmark reliability research problems
+3. ensuring low cost non-reliable benchmarks do not produce a race to the bottom
+4. advancing the development of rigorous safety standards
+
+## What Can I Do About It?
+
+We would like to see **benchmarks divided into two purposes.**
+
+_Purpose 1: Scientific and Engineering Benchmarks._ These benchmarks advance what is possible with AI systems. Their design properties center on replication and rapid improvement and are the direct targets of optimization that often leads to deprecating the [benchmark](https://r0bk.github.io/killedbyllm/). These benchmarks would be advised to follow the recommendations of [BetterBench](https://betterbench.stanford.edu/).
+
+_Purpose 2: Real World Decision Benchmarks._ Real world decision benchmarks are produced with the explicit intention of evidencing real world decisions. Since the consequences and costs associated with real world decision benchmarks is so much greater than those produced exclusively for scientific and engineering purposes, there are very few benchmarks aspiring to this purpose. We would like to see benchmark authors self-assess with BenchRisk and report on their results publicly.
+
+All LLM benchmarks are invited to submit. The absence of a BenchRisk score for a benchmark indicates the benchmark is produced for purpose 1 only, the benchmark organization has chosen to not score their benchmarks, or the benchmark score is pending production.
+
+## The Research Paper
+
+The research paper associated with BenchRisk was recently accepted into the [The Thirty-Ninth Annual Conference on Neural Information Processing Systems](https://neurips.cc/). Our preferred citation is the arXiv version that will be posted shortly.
+
+**Title:** _Risk Management for Mitigating Benchmark Failure Modes: BenchRisk_
+
+**Abstract**
+
+> Large language model (LLM) benchmarks inform LLM use decisions (e.g., ``is this LLM safe to deploy for my use case and context?''). However, benchmarks may be rendered unreliable by various failure modes impacting benchmark bias, variance, coverage, or people's capacity to understand benchmark evidence. Using the National Institute of Standards and Technology's risk management process as a foundation, this research iteratively analyzed 26 popular benchmarks, identifying 57 potential failure modes and 196 corresponding mitigation strategies. The mitigations reduce failure likelihood and/or severity, providing a frame for evaluating ``benchmark risk,'' which is scored to provide a metaevaluation benchmark: BenchRisk. Higher scores indicate benchmark users are less likely to reach an incorrect or unsupported conclusion about an LLM. All 26 scored benchmarks present significant risk within one or more of the five scored dimensions (comprehensiveness, intelligibility, consistency, correctness, and longevity), which points to important open research directions for the field of LLM benchmarking. The BenchRisk workflow allows for comparison between benchmarks; as an open-source tool, it also facilitates the identification and sharing of risks and their mitigations.
+
+**Authors**  
+- [Sean McGregor](https://seanbmcgregor.com/), [AI Verification and Evaluation Research Institute (AVERI)](https://www.averi.org/), sean.mcgregor@averi.org
+- [Victor Lu](https://www.linkedin.com/in/luvictor/), Independent
+- [Vassil Tashev](https://www.linkedin.com/in/vassil-t-250510195/), Independent
+- [Armstrong Foundjem](https://www.linkedin.com/in/foundjem/), Polytechnique Montreal
+- [Aishwarya Ramasethu](https://www.linkedin.com/in/aishwaryaramasethu/), [Prediction Guard](https://predictionguard.com/)
+- [Mahdi Kazemi](https://www.linkedin.com/in/sadegh-almahdi-kazemi/), University of Houston
+- [Chris Knotz](https://www.linkedin.com/in/chris-knotz-5457345/), Independent
+- [Kongtao Chen](https://www.linkedin.com/in/kongtao-c-135116aa/), Google
+- [Alicia Parrish](https://www.linkedin.com/in/alicia-parrish-28506379/), Google Deepmind
+- [Anka Reuel](https://ankareuel.com/), Stanford University
+- [Heather Frase](https://www.linkedin.com/in/heather-frase/), [Veraitech](https://veraitechus.com/) and [Responsible AI Collaborative](https://raicollab.org/)
+
+## The Organization
+
+BenchRisk is operated by the AI Verification and Evaluation Research Institute (AVERI). For all correspondances, please contact sean.mcgregor@averi.org.
