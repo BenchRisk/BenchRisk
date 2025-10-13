@@ -318,7 +318,7 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
               longevityScore,
               benchmarkDescription,
               reference,
-              body
+              body,
             } = score
             return (
               <li key={'Score' + name} className="py-4">
