@@ -64,12 +64,14 @@ function renderMitigations(mitigations, failureModeMap, mitigationMap) {
 export default function Drawer({
   title,
   contents,
+  reference,
   service = false,
   mitigations = [],
   failureModeMap = [],
   mitigationMap = [],
 }) {
   const [open, setOpen] = useState(false)
+  const MDXContent = contents && contents.code && <MDXLayoutRenderer code={contents.code} />
 
   return (
     <li className="w-full">
@@ -82,7 +84,6 @@ export default function Drawer({
       </button>
       <Dialog open={open} onClose={setOpen} className="relative z-10">
         <div className="fixed inset-0" />
-
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
@@ -112,10 +113,28 @@ export default function Drawer({
                           </div>
                         </div>
                         {/* Main */}
+                        <div className="relative flex-1 px-4 sm:px-6">
+                          <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                            <div className="text-white [&_blockquote]:text-gray-400">
+                              {MDXContent}
+                            </div>
+                            {reference && (
+                              <>
+                                Find more information about the benchmark at its{' '}
+                                <Link href={reference}>definitive source</Link>{' '}
+                              </>
+                            )}
+                          </div>
+                        </div>
                         <div className="divide-y divide-gray-200">
                           <div className="px-4 py-5 sm:px-0 sm:py-0">
                             <dl className="mr-10 space-y-8 sm:space-y-0 sm:divide-y sm:divide-gray-200">
-                              {contents}
+                              {/* Mitigations */}
+                              <div className="px-4 py-5 sm:px-0 sm:py-0">
+                                <h2 className="p-5 text-center text-lg font-semibold leading-6 text-gray-900 dark:text-gray-100">
+                                  {title} Mitigation Checklist
+                                </h2>
+                              </div>
                               {renderMitigations(mitigations, failureModeMap, mitigationMap)}
                             </dl>
                           </div>

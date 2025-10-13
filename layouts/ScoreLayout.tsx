@@ -318,6 +318,7 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
               longevityScore,
               benchmarkDescription,
               reference,
+              body
             } = score
             return (
               <li key={'Score' + name} className="py-4">
@@ -343,7 +344,8 @@ export default function ScoreLayout({ scores, mitigationMap, failureModeMap }) {
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
                         <Drawer
                           title={`${name}`}
-                          contents={''}
+                          contents={body}
+                          reference={reference.raw}
                           mitigations={adoptedMitigations}
                           failureModeMap={failureModeMap}
                           mitigationMap={mitigationMap}
