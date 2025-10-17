@@ -9,6 +9,8 @@ export default function ModeLayout({ modes }) {
   const [searchValue, setSearchValue] = useState('')
   const filteredModes = modes.filter((mode) => {
     const searchContent =
+      mode.dimension +
+      ' ' +
       'failure mode ' +
       mode.number.toString() +
       ' ' +
