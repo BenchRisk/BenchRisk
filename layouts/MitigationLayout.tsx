@@ -212,7 +212,7 @@ export default function MitigationLayout({ mitigations }) {
                     </div>
 
                     {allScores.map((score) => {
-                      if (score.adoptedMitigations?.includes(mitigationNumber)) return ''
+                      if (!score.adoptedMitigations?.includes(mitigationNumber)) return ''
                       return (
                         <Link
                           key={mitigationNumber.toString() + score.name}
