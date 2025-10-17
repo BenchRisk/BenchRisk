@@ -211,18 +211,28 @@ export default function MitigationLayout({ mitigations }) {
                       Affirming Benchmarks:{' '}
                     </div>
 
-                    {allScores.map((score) => {
-                      if (!score.adoptedMitigations?.includes(mitigationNumber)) return ''
-                      return (
-                        <Link
-                          key={mitigationNumber.toString() + score.name}
-                          href={'/score#' + encodeURIComponent(score.name)}
-                          className="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset"
-                        >
-                          {score.name}
-                        </Link>
+                    {(() => {
+                      const affirming = allScores.filter((score) =>
+                        score.adoptedMitigations?.includes(mitigationNumber)
                       )
-                    })}
+                      return affirming.length > 0 ? (
+                        affirming.map((score) => {
+                          return (
+                            <Link
+                              key={mitigationNumber.toString() + score.name}
+                              href={'/score#' + encodeURIComponent(score.name)}
+                              className="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset"
+                            >
+                              {score.name}
+                            </Link>
+                          )
+                        })
+                      ) : (
+                        <span className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                          None
+                        </span>
+                      )
+                    })()}
                   </div>
                 </article>
               </li>
