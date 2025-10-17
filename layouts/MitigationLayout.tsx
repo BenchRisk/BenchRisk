@@ -23,6 +23,9 @@ export default function MitigationLayout({ mitigations }) {
       ' ' +
       mitigation.likelihoodReductionPercent.toString() +
       ' ' +
+      'Failure Mode ' +
+      mitigation.mitigatedNumber.toString() +
+      ' ' +
       allScores
         .filter((score) => {
           return score.adoptedMitigations?.includes(mitigation.mitigationNumber)
