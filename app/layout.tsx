@@ -2,7 +2,7 @@ import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
 
-import { Space_Grotesk } from 'next/font/google'
+import { Space_Grotesk, Reem_Kufi, Unna } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchProvider, SearchConfig } from 'pliny/search'
 import Header from '@/components/Header'
@@ -16,6 +16,19 @@ const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-space-grotesk',
+})
+const reemKufi = Reem_Kufi({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'], // Reem Kufi supports 400-700
+  display: 'swap',
+  variable: '--font-reem-kufi',
+})
+const unna = Unna({
+  subsets: ['latin'],
+  weight: ['400', '700'], // Unna supports 400 and 700
+  style: ['normal', 'italic'], // Optional: include italic variants
+  display: 'swap',
+  variable: '--font-unna',
 })
 
 export const metadata: Metadata = {
@@ -62,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${space_grotesk.variable} scroll-smooth`}
+      className={`${reemKufi.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
