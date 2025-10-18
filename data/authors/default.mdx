@@ -6,7 +6,7 @@ company: 'AI Verification and Evaluation Research Institute'
 email: 'sean.mcgregor@averi.org'
 github: 'https://github.com/benchrisk/benchrisk'
 status: 'The first metaevaluation result, BenchRisk-ChatBot-v1.0, has been released to general availability. Those that may rely on its representations about the reliability of different benchmarks are advised to read the associated research paper.'
-about: 'The first metaevaluation result, BenchRisk-ChatBot-v1.0, has been released to general availability. Those that may rely on its representations about the reliability of different benchmarks are advised to read the associated research paper.'
+about: ''
 ---
 
 import { ReactIconInline, ReactIconLi } from 'components/Icons'
@@ -30,149 +30,149 @@ Have a failure mode that we missed? You can submit a [new failure mode](https://
 
 ## <ReactIconInline i="FaBook" /> Glossary
 
-**Adopted (Mitigations)**  
-_Definition:_ The affirmed application of mitigations designed to reduce the likelihood or severity of a benchmark failure mode. Something is not considered as "adopted" if it is committed to, but the scores as currently published for the benchmark are not consistent with the mitigation's application. For instance, if the next release of the benchmark will have a mitigation in place while the current benchmark does not, the current benchmark is the one that is scored and thus the mitigation is not considered as being adopted.
-
-**Adversarial Prompt Bulking**  
-_Definition:_ technique of increasing the number of prompts by multiplying them with various tactics (e.g., jailbreak templates) and root instances. See also: "Prompt Perturbation Bulking."
-
-**Adversarial Users**  
-_Definition:_ individuals or entities that intentionally interact with an AI system in ways designed to exploit its vulnerabilities or induce harmful behavior. They typically use jailbreaks to bypass guard mechanisms and intentionally move out of the task distribution contemplated by system developers.
-
-**Benchmark Integrity Requirements**  
-_Definition:_ the standards and guidelines that ensure the reliability, validity, and fairness of the evaluation process for systems under test (SUTs). These requirements are designed to maintain the trustworthiness of benchmarks, ensuring that they accurately assess SUTs. Key components may include requirements related to: Transparency, Consistency, Reproducibility, Accountability, Comprehensiveness, Independence, Ethical Compliance, Update Mechanisms. Examples of how SUT developers violate benchmark integrity requirements include: Selective Reporting, Data Snooping, Cherry-Picking Metrics, Modifying Evaluation Protocols, Benchmark Overfitting, Misleading Baselines, Ignoring Ethical Guidelines, and Insufficient Documentation, among others.
-
-**Benchmark Reliability**  
-_Definition:_ The ability for a benchmark to inform real-world decision-making in a stated operating context for a specified amount of time and with no failures.
-
-**Canary Data**  
-_Definition:_ refers to specially crafted benchmark data used to detect developer or evaluation practices likely to compromise the reliability of a benchmark. It is often planted deliberately to act as a warning signal (like a "canary in a coal mine").
-
-**Comprehensiveness**  
-_Definition:_ The extent to which a benchmark fully represents or covers the range of inputs, use cases, or conditions relevant to the System Under Test (SUT) task, ensuring sufficient variability and representation. Comprehensiveness asks, "will the relying user believe the benchmark covers something impacting their LLM decisions that is not covered?" See also, "Reliability Dimensions."
-
-**Consistency**  
-_Definition:_ The degree to which a benchmark score is not subject to random noise (e.g., variability arising from probabilistic sampling). Consistency asks, "Does the score have unreasonably high variance." See also, "Reliability Dimensions."
-
-**Correctness**  
-_Definition:_ The property of a benchmark being free from significant errors that could mislead or bias outcomes. Correctness asks, "Could the benchmark results be systematically wrong (e.g., biased) in some way?"" See also, "Reliability Dimensions."
-
-**Distributional Association**  
-_Definition:_ a property of prompt collections desirable for benchmarking properties expressed in distribution rather than in individual instances. An example includes resume screening software, which may disproportionately reject candidates from a poor state in favor of candidates from wealthy states. The ability to assess these distributional harms is contingent on having data with a distributional association (i.e., annotations supporting distributional evaluation).
-
-**Domain Expert**  
-_Definition:_ is an individual possessing specialized knowledge and skills in a particular area or industry, often leveraged to provide insights, guide data interpretation, and aid in decision-making processes. For the purpose of benchmarks, a domain expert is someone that knows about the system under test's (SUT's) task. Examples include, ethicists for an ethics benchmark, real estate agents for a real estate agent benchmark, a speaker of a low resource language for a low resource language translation benchmark, social engineering specialist for computer security benchmarks, etc. A domain expert is _not_ someone without any form of specialized knowledge within the benchmarked domain, for example a person writing jailbreak prompts may successfully bypass a guard model with their prompts, but without some form of formal experience attacking systems the person would not be considered a domain expert. To be considered a domain expert, a person does not need to have formal training in the event they have significant experience and knowledge within the domain.
-
-**Evaluator**  
-_Definition:_ a tool, algorithm, model, framework, or human checking the output of the System Under Test (SUT) for correctness, safety, or some other measurable property.
-
-**Failing System Under Test (SUT) Outputs**  
-_Definition:_ the incorrect, unreliable, noncompliant, unsafe, or otherwise wrong responses generated by a SUT during benchmarking. These failures can take many forms, depending on the AI system being tested and the evaluation criteria. Examples are: Hallucinations, Policy Violations, Harmful Outputs, Incoherent Responses, Contradictory Responses, Non-Compliance with Task Instructions, Failure to Follow Safety Constraints, Bias and Discrimination, and Misinformation.
-
-**Benchmark Failure Mode**  
-_Definition:_ The way in which a benchmark could potentially provide the user with faulty real-world decision-making information.
-
-**Grade Presentation**  
-_Definition:_ The visual representation of benchmark results, scores, or grades.
-
-**Idiosyncratic Failure Mode**  
-_Definition:_ refers to a unique or unusual type of failure that occurs in a specific benchmark, which may not be present in other benchmarks. These failure modes are often influenced by particular characteristics of the benchmarking methodology, such as its design, implementation, or the data.
-
-**Information Foraging**  
-_Definition:_ The process by which users search for, evaluate, and extract useful information within an environment, guided by perceived value relative to effort (information scent). In the context of LLM benchmarking, information foraging refers to how people develop a mental model about SUTs. Inspired by ecological foraging theory, it emphasizes optimizing the trade-off between cognitive cost and informational gain.
-
-**Intelligibility**  
-_Definition:_ The clarity and ease with which benchmark results can be understood by intended users, ensuring users can accurately interpret and utilize the benchmark for real world decision making. Intelligibility asks, "will the relying user understand the LLM properties as evidenced by the benchmark?" See also, "Reliability Dimensions."
-
-**Interrater Reliability**  
-_Definition:_ The degree of agreement or consistency among multiple independent evaluators (raters) when assessing the same set of outputs, tasks, or behaviors. High interrater reliability indicates that the evaluation criteria are well-defined, interpretable, and applied consistently, which is essential for ensuring the objectivity and reproducibility of benchmark results. It is commonly quantified using statistical measures such as Cohen’s kappa.
-
-**Jailbreak**  
-_Definition:_ A prompt designed to bypass the safety, content, or behavioral constraints of an AI system, enabling it to produce restricted, harmful, or unintended outputs. Jailbreaks are often crafted using adversarial prompting techniques. In benchmarking, jailbreaks are used to test the robustness of safety measures and to identify points of failure in content moderation or policy adherence.
-
-**(Failure Mode) Likelihood**  
-_Definition:_ A factor based on a subjective estimate of the probability that a given failure mode will materialize and impact reliability.
-
-**Longevity**  
-_Definition:_ The ability of a benchmark to maintain its correctness, comprehensiveness, consistency, and intelligibility through time subject to gaming or changing circumstances. Longevity asks, "does the benchmark become less reliable through time?" See also, "Reliability Dimensions."
-
-**Lower-level Measures to Higher-level Grades**  
-_Definition:_ refer to the hierarchical structure used in evaluating and scoring systems under test (SUTs). This structure involves assessing performance at different granularity levels, where lower-level measures feed into higher-level evaluations. Example: _Lower-Level Measures_ of Accuracy, Precision, Recall, Error Rates, User Feedback Scores and _Higher-Level Grades_ of Overall Safety Score, General Performance Rating, Compliance Rating.
-
-**Mitigations**  
-_Definition:_ refer to strategies and actions implemented to address factors that could compromise the accuracy and consistency of AI benchmarks
-
-**Normative Properties**  
-_Definition:_ refer to characteristics, standards, or criteria that define what is considered acceptable, desirable, or expected within a particular context or domain. These properties often guide behavior, decision-making, and evaluations, influencing how systems, individuals, or groups act or are assessed. Example: which hand(s) a person may politely eat with at the dinner table.
-
-**Prompt**  
-_Definition:_ An input provided to a System Under Test (SUT) to elicit a response or behavior, typically but not exclusively in natural language. Prompts define the context, task, or question the system is expected to respond to and are central to evaluating SUT performance in benchmarking. A prompt can range from a simple query (“Translate this sentence”) to a complex scenario involving multiple instructions or constraints. Effective prompt design directly influences the reliability and interpretability of benchmark results.
-
-**Prompt Inferencing**  
-_Definition:_ The stage during which prompts are delivered to the system under test (SUT), ensuring conditions for testing accurately reflect intended operational contexts.
-
-**Prompt Perturbation Bulking**  
-_Definition:_ is a technique to increase the number of prompts used in the production of a benchmark by making modifications to root prompts. This method helps in evaluating how slight changes in wording, structure, or context can affect the outputs of a system under test (SUT), particularly in understanding model behavior and identifying vulnerabilities. See also: "Adversarial Prompt Bulking."
-
-**Random Performance Level**  
-_Definition:_ refers to the baseline performance metric achieved by a system under test (SUT) when it makes predictions or decisions purely at random, without using any learned information or strategy. It serves as a reference point grounding user expectations to help interpret benchmark results.
-
-**Reasonable Person**  
-_Definition:_ an informed, rational, and fair-minded user who is neither unusually sensitive nor malicious. This construct helps ground subjective judgments—such as whether an output is misleading, offensive, or unsafe—in a shared societal norm, and is often used to calibrate evaluative decisions in the absence of clear-cut rules.
-
-**Reliability Dimensions**  
-_Definition:_ specific dimensions or criteria used to evaluate and assess the reliability of LLM benchmarks. See also, "Longevity," "Comprehensiveness," "Consistency," "Correctness," and "Intelligibility."
-
-**Risk Mitigation**  
-_Definition:_ Accepting, avoiding, reducing, sharing, or transferring risk.
-
-**Risk to Benchmark Reliability**  
-_Definition:_ A composite measure of a failure mode’s probability of occurring and the magnitude or degree of the consequences of the corresponding failure. BenchRisk expresses risk as (severity \∗ likelihood), as is commonplace in risk management.
-
-**Root Prompts**  
-_Definition:_ refer to an initial set of foundational, seed, or base prompts used to generate variations, expansions, or perturbations in data-driven processes.
-
-**Severity**  
-_Definition:_ An assessment of the relative consequence of mitigating/remediating the failure mode. Severity is _catastrophic_ if it could result in the immediate irreversible full loss of utility
-of the benchmark, _critical_ if it could result in significant reduction in a benchmark's comprehensiveness, intelligibility, consistency, correctness, or longevity, _degraded_ if it could result in moderate reduction in a benchmark's comprehensiveness, intelligibility, consistency, correctness, or longevity, and _marginally degraded_ if it could result in a minor reduction in at least one benchmark dimension of comprehensiveness, intelligibility, consistency, correctness,
-or longevity.
-
-**Stage**  
-_Definition:_ refers to a distinct phase within the overall benchmark production process, each characterized by specific objectives and activities. The defined stages outline a structured workflow for developing and maintaining AI benchmarks. See below for the workflow stages used in the production of BenchRisk.
-
-![The benchmark production process](static/images/about/benchmark_factory.png 'Benchmark Factory')
-
-**Sophisticated User**  
-_Definition:_ An individual with advanced knowledge, experience, or technical skill supporting their understanding of information conveyed by the benchmark. In benchmarking, a sophisticated user may include red team members, researchers, adversarial prompt engineers, and domain experts who are capable of systematically probing model limitations, among others.
-
-**Subtask**  
-_Definition:_ A narrowly defined System Under Test (SUT) Task of a broader collection of benchmarked tasks performed by a SUT. Subtasks isolate specific capabilities or dimensions that contribute to overall benchmark performance. By decomposing complex tasks into subtasks, evaluators can better diagnose system strengths and weaknesses, support modular scoring, and improve the interpretability of benchmark results.
-
-**SUT (System Under Test)**  
-_Definition:_ refers to the specific system, model, or component being evaluated in a testing process.
-
-**System Under Test (SUT) Task**  
-_Definition:_ The specific activity or objective that the System Under Test (SUT) is expected to perform or complete in the real world. A well-defined SUT task provides a capacity for benchmarks to measure and report on properties related to the task.
-
-**Tactics**  
-_Definition:_ A transformation applied to a prompt to produce an altered prompt, typically for the purpose of jailbreaking a SUT.
-
-**Task Definition**  
-_Definition:_ the explicit and detailed specification of a System Under Test (SUT) Task's parameters, requirements, and expectations. A well-defined task ensures that all stakeholders have a clear understanding of what needs to be accomplished, thereby minimizing ambiguities that could lead to inconsistencies or errors in execution.
-
-**Temperature**  
-_Definition:_ is a parameter used in Large Language Models (LLMs) that controls the randomness of outputs during text generation. It influences how predictable or creative the model's responses will be.
-
-**Template**  
-_Definition:_ A root prompt from which structured changes facilitate interrogation of a SUT property subject to benchmark. Templates do not necessarily produce jailbreaks since they do not necessarily have an adversarial intent. See also: Tactics.
-
-**Upkeep**  
-_Definition:_ The ongoing maintenance and revision processes required to sustain benchmark reliability, including adjustments for evolving requirements, guarding against data leakage, and maintaining consistency of evaluation conditions.
-
-**User Persona**  
-_Definition:_ A representative archetype that models the intended end user of a benchmark, defined by their goals, knowledge level, behaviors, and contextual needs. Incorporating user personas into benchmark design helps ensure evaluations reflect the information needs of the benchmark user. Stating some form of target user publicly with the benchmark helps users identify whether the benchmark serves their information needs.
-
 ### Glossary Coda
 
 This glossary was initialized with large language models before being heavily edited by BenchRisk maintainers.
 In the absence of a superseding definition found above, BenchRisk adopts the [NIST AI Glossary definitions](https://airc.nist.gov/glossary/).
+
+### Adopted (Mitigations)
+_Definition:_ The affirmed application of mitigations designed to reduce the likelihood or severity of a benchmark failure mode. Something is not considered as "adopted" if it is committed to, but the scores as currently published for the benchmark are not consistent with the mitigation's application. For instance, if the next release of the benchmark will have a mitigation in place while the current benchmark does not, the current benchmark is the one that is scored and thus the mitigation is not considered as being adopted.
+
+### Adversarial Prompt Bulking
+_Definition:_ technique of increasing the number of prompts by multiplying them with various tactics (e.g., jailbreak templates) and root instances. See also: "Prompt Perturbation Bulking."
+
+### Adversarial Users
+_Definition:_ individuals or entities that intentionally interact with an AI system in ways designed to exploit its vulnerabilities or induce harmful behavior. They typically use jailbreaks to bypass guard mechanisms and intentionally move out of the task distribution contemplated by system developers.
+
+### Benchmark Integrity Requirements
+_Definition:_ the standards and guidelines that ensure the reliability, validity, and fairness of the evaluation process for systems under test (SUTs). These requirements are designed to maintain the trustworthiness of benchmarks, ensuring that they accurately assess SUTs. Key components may include requirements related to: Transparency, Consistency, Reproducibility, Accountability, Comprehensiveness, Independence, Ethical Compliance, Update Mechanisms. Examples of how SUT developers violate benchmark integrity requirements include: Selective Reporting, Data Snooping, Cherry-Picking Metrics, Modifying Evaluation Protocols, Benchmark Overfitting, Misleading Baselines, Ignoring Ethical Guidelines, and Insufficient Documentation, among others.
+
+### Benchmark Reliability
+_Definition:_ The ability for a benchmark to inform real-world decision-making in a stated operating context for a specified amount of time and with no failures.
+
+### Canary Data
+_Definition:_ refers to specially crafted benchmark data used to detect developer or evaluation practices likely to compromise the reliability of a benchmark. It is often planted deliberately to act as a warning signal (like a "canary in a coal mine").
+
+### Comprehensiveness
+_Definition:_ The extent to which a benchmark fully represents or covers the range of inputs, use cases, or conditions relevant to the System Under Test (SUT) task, ensuring sufficient variability and representation. Comprehensiveness asks, "will the relying user believe the benchmark covers something impacting their LLM decisions that is not covered?" See also, "Reliability Dimensions."
+
+### Consistency
+_Definition:_ The degree to which a benchmark score is not subject to random noise (e.g., variability arising from probabilistic sampling). Consistency asks, "Does the score have unreasonably high variance." See also, "Reliability Dimensions."
+
+### Correctness
+_Definition:_ The property of a benchmark being free from significant errors that could mislead or bias outcomes. Correctness asks, "Could the benchmark results be systematically wrong (e.g., biased) in some way?"" See also, "Reliability Dimensions."
+
+### Distributional Association
+_Definition:_ a property of prompt collections desirable for benchmarking properties expressed in distribution rather than in individual instances. An example includes resume screening software, which may disproportionately reject candidates from a poor state in favor of candidates from wealthy states. The ability to assess these distributional harms is contingent on having data with a distributional association (i.e., annotations supporting distributional evaluation).
+
+### Domain Expert
+_Definition:_ is an individual possessing specialized knowledge and skills in a particular area or industry, often leveraged to provide insights, guide data interpretation, and aid in decision-making processes. For the purpose of benchmarks, a domain expert is someone that knows about the system under test's (SUT's) task. Examples include, ethicists for an ethics benchmark, real estate agents for a real estate agent benchmark, a speaker of a low resource language for a low resource language translation benchmark, social engineering specialist for computer security benchmarks, etc. A domain expert is _not_ someone without any form of specialized knowledge within the benchmarked domain, for example a person writing jailbreak prompts may successfully bypass a guard model with their prompts, but without some form of formal experience attacking systems the person would not be considered a domain expert. To be considered a domain expert, a person does not need to have formal training in the event they have significant experience and knowledge within the domain.
+
+### Evaluator
+_Definition:_ a tool, algorithm, model, framework, or human checking the output of the System Under Test (SUT) for correctness, safety, or some other measurable property.
+
+### Failing System Under Test (SUT) Outputs
+_Definition:_ the incorrect, unreliable, noncompliant, unsafe, or otherwise wrong responses generated by a SUT during benchmarking. These failures can take many forms, depending on the AI system being tested and the evaluation criteria. Examples are: Hallucinations, Policy Violations, Harmful Outputs, Incoherent Responses, Contradictory Responses, Non-Compliance with Task Instructions, Failure to Follow Safety Constraints, Bias and Discrimination, and Misinformation.
+
+### Benchmark Failure Mode
+_Definition:_ The way in which a benchmark could potentially provide the user with faulty real-world decision-making information.
+
+### Grade Presentation
+_Definition:_ The visual representation of benchmark results, scores, or grades.
+
+### Idiosyncratic Failure Mode
+_Definition:_ refers to a unique or unusual type of failure that occurs in a specific benchmark, which may not be present in other benchmarks. These failure modes are often influenced by particular characteristics of the benchmarking methodology, such as its design, implementation, or the data.
+
+### Information Foraging
+_Definition:_ The process by which users search for, evaluate, and extract useful information within an environment, guided by perceived value relative to effort (information scent). In the context of LLM benchmarking, information foraging refers to how people develop a mental model about SUTs. Inspired by ecological foraging theory, it emphasizes optimizing the trade-off between cognitive cost and informational gain.
+
+### Intelligibility
+_Definition:_ The clarity and ease with which benchmark results can be understood by intended users, ensuring users can accurately interpret and utilize the benchmark for real world decision making. Intelligibility asks, "will the relying user understand the LLM properties as evidenced by the benchmark?" See also, "Reliability Dimensions."
+
+### Interrater Reliability
+_Definition:_ The degree of agreement or consistency among multiple independent evaluators (raters) when assessing the same set of outputs, tasks, or behaviors. High interrater reliability indicates that the evaluation criteria are well-defined, interpretable, and applied consistently, which is essential for ensuring the objectivity and reproducibility of benchmark results. It is commonly quantified using statistical measures such as Cohen’s kappa.
+
+### Jailbreak
+_Definition:_ A prompt designed to bypass the safety, content, or behavioral constraints of an AI system, enabling it to produce restricted, harmful, or unintended outputs. Jailbreaks are often crafted using adversarial prompting techniques. In benchmarking, jailbreaks are used to test the robustness of safety measures and to identify points of failure in content moderation or policy adherence.
+
+### (Failure Mode) Likelihood
+_Definition:_ A factor based on a subjective estimate of the probability that a given failure mode will materialize and impact reliability.
+
+### Longevity
+_Definition:_ The ability of a benchmark to maintain its correctness, comprehensiveness, consistency, and intelligibility through time subject to gaming or changing circumstances. Longevity asks, "does the benchmark become less reliable through time?" See also, "Reliability Dimensions."
+
+### Lower-level Measures to Higher-level Grades
+_Definition:_ refer to the hierarchical structure used in evaluating and scoring systems under test (SUTs). This structure involves assessing performance at different granularity levels, where lower-level measures feed into higher-level evaluations. Example: _Lower-Level Measures_ of Accuracy, Precision, Recall, Error Rates, User Feedback Scores and _Higher-Level Grades_ of Overall Safety Score, General Performance Rating, Compliance Rating.
+
+### Mitigations
+_Definition:_ refer to strategies and actions implemented to address factors that could compromise the accuracy and consistency of AI benchmarks
+
+### Normative Properties
+_Definition:_ refer to characteristics, standards, or criteria that define what is considered acceptable, desirable, or expected within a particular context or domain. These properties often guide behavior, decision-making, and evaluations, influencing how systems, individuals, or groups act or are assessed. Example: which hand(s) a person may politely eat with at the dinner table.
+
+### Prompt
+_Definition:_ An input provided to a System Under Test (SUT) to elicit a response or behavior, typically but not exclusively in natural language. Prompts define the context, task, or question the system is expected to respond to and are central to evaluating SUT performance in benchmarking. A prompt can range from a simple query (“Translate this sentence”) to a complex scenario involving multiple instructions or constraints. Effective prompt design directly influences the reliability and interpretability of benchmark results.
+
+### Prompt Inferencing
+_Definition:_ The stage during which prompts are delivered to the system under test (SUT), ensuring conditions for testing accurately reflect intended operational contexts.
+
+### Prompt Perturbation Bulking
+_Definition:_ is a technique to increase the number of prompts used in the production of a benchmark by making modifications to root prompts. This method helps in evaluating how slight changes in wording, structure, or context can affect the outputs of a system under test (SUT), particularly in understanding model behavior and identifying vulnerabilities. See also: "Adversarial Prompt Bulking."
+
+### Random Performance Level
+_Definition:_ refers to the baseline performance metric achieved by a system under test (SUT) when it makes predictions or decisions purely at random, without using any learned information or strategy. It serves as a reference point grounding user expectations to help interpret benchmark results.
+
+### Reasonable Person
+_Definition:_ an informed, rational, and fair-minded user who is neither unusually sensitive nor malicious. This construct helps ground subjective judgments—such as whether an output is misleading, offensive, or unsafe—in a shared societal norm, and is often used to calibrate evaluative decisions in the absence of clear-cut rules.
+
+### Reliability Dimensions
+_Definition:_ specific dimensions or criteria used to evaluate and assess the reliability of LLM benchmarks. See also, "Longevity," "Comprehensiveness," "Consistency," "Correctness," and "Intelligibility."
+
+### Risk Mitigation
+_Definition:_ Accepting, avoiding, reducing, sharing, or transferring risk.
+
+### Risk to Benchmark Reliability
+_Definition:_ A composite measure of a failure mode’s probability of occurring and the magnitude or degree of the consequences of the corresponding failure. BenchRisk expresses risk as (severity \∗ likelihood), as is commonplace in risk management.
+
+### Root Prompts
+_Definition:_ refer to an initial set of foundational, seed, or base prompts used to generate variations, expansions, or perturbations in data-driven processes.
+
+### Severity
+_Definition:_ An assessment of the relative consequence of mitigating/remediating the failure mode. Severity is _catastrophic_ if it could result in the immediate irreversible full loss of utility
+of the benchmark, _critical_ if it could result in significant reduction in a benchmark's comprehensiveness, intelligibility, consistency, correctness, or longevity, _degraded_ if it could result in moderate reduction in a benchmark's comprehensiveness, intelligibility, consistency, correctness, or longevity, and _marginally degraded_ if it could result in a minor reduction in at least one benchmark dimension of comprehensiveness, intelligibility, consistency, correctness,
+or longevity.
+
+### Stage
+_Definition:_ refers to a distinct phase within the overall benchmark production process, each characterized by specific objectives and activities. The defined stages outline a structured workflow for developing and maintaining AI benchmarks. See below for the workflow stages used in the production of BenchRisk.
+
+![The benchmark production process](static/images/about/benchmark_factory.png 'Benchmark Factory')
+
+### Sophisticated User
+_Definition:_ An individual with advanced knowledge, experience, or technical skill supporting their understanding of information conveyed by the benchmark. In benchmarking, a sophisticated user may include red team members, researchers, adversarial prompt engineers, and domain experts who are capable of systematically probing model limitations, among others.
+
+### Subtask
+_Definition:_ A narrowly defined System Under Test (SUT) Task of a broader collection of benchmarked tasks performed by a SUT. Subtasks isolate specific capabilities or dimensions that contribute to overall benchmark performance. By decomposing complex tasks into subtasks, evaluators can better diagnose system strengths and weaknesses, support modular scoring, and improve the interpretability of benchmark results.
+
+### SUT (System Under Test)
+_Definition:_ refers to the specific system, model, or component being evaluated in a testing process.
+
+### System Under Test (SUT) Task
+_Definition:_ The specific activity or objective that the System Under Test (SUT) is expected to perform or complete in the real world. A well-defined SUT task provides a capacity for benchmarks to measure and report on properties related to the task.
+
+### Tactics
+_Definition:_ A transformation applied to a prompt to produce an altered prompt, typically for the purpose of jailbreaking a SUT.
+
+### Task Definition
+_Definition:_ the explicit and detailed specification of a System Under Test (SUT) Task's parameters, requirements, and expectations. A well-defined task ensures that all stakeholders have a clear understanding of what needs to be accomplished, thereby minimizing ambiguities that could lead to inconsistencies or errors in execution.
+
+### Temperature
+_Definition:_ is a parameter used in Large Language Models (LLMs) that controls the randomness of outputs during text generation. It influences how predictable or creative the model's responses will be.
+
+### Template
+_Definition:_ A root prompt from which structured changes facilitate interrogation of a SUT property subject to benchmark. Templates do not necessarily produce jailbreaks since they do not necessarily have an adversarial intent. See also: Tactics.
+
+### Upkeep
+_Definition:_ The ongoing maintenance and revision processes required to sustain benchmark reliability, including adjustments for evolving requirements, guarding against data leakage, and maintaining consistency of evaluation conditions.
+
+### User Persona
+_Definition:_ A representative archetype that models the intended end user of a benchmark, defined by their goals, knowledge level, behaviors, and contextual needs. Incorporating user personas into benchmark design helps ensure evaluations reflect the information needs of the benchmark user. Stating some form of target user publicly with the benchmark helps users identify whether the benchmark serves their information needs.
