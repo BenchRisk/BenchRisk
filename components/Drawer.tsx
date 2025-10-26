@@ -77,7 +77,7 @@ export default function Drawer({
     <li className="w-full">
       <button
         onClick={() => setOpen(true)}
-        className="zoom ml-0 flex w-full rounded bg-transparent px-4 py-2 pl-0 text-left font-bold text-pink-500 underline hover:bg-gray-500 hover:bg-opacity-20 hover:text-pink-400"
+        className="zoom ml-0 flex w-full rounded bg-transparent px-4 py-2 pl-0 text-left font-bold text-purple-500 underline hover:bg-gray-500 hover:bg-opacity-20 hover:text-purple-400"
       >
         <ReactIconInline i="MdOutlineZoomIn" color={'white'}></ReactIconInline>
         {title}
@@ -92,7 +92,7 @@ export default function Drawer({
                 <div className="absolute inset-0 overflow-hidden">
                   <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
                     <Dialog.Panel className="pointer-events-auto w-screen max-w-2xl transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700">
-                      <div className="flex h-full flex-col overflow-y-scroll border-l-2 border-pink-300 bg-black shadow-xl dark:border-pink-700 dark:text-pink-400">
+                      <div className="flex h-full flex-col overflow-y-scroll border-l-2 border-purple-300 bg-black shadow-xl dark:border-purple-700 dark:text-purple-400">
                         <div className="px-4 py-6 sm:px-6">
                           <div className="flex items-start justify-between">
                             <Dialog.Title className="text-base font-semibold leading-6">
