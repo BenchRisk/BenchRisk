@@ -15,9 +15,7 @@ export default function Home() {
   return (
     <>
       <HeadlineLayout content={mainContent}>
-        {welcomePost && (
-          <MDXLayoutRenderer code={welcomePost.body.code} components={components} />
-        )}
+        {welcomePost && <MDXLayoutRenderer code={welcomePost.body.code} components={components} />}
       </HeadlineLayout>
       {siteMetadata.newsletter?.provider && (
         <div className="flex items-center justify-center pt-4">
